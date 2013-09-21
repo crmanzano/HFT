@@ -1,4 +1,4 @@
-class testmodule::config{
+class testmodule::clientconfig{
 	# Puts /etc/puppet/modules/testmodule/files/com.puppetlabs.puppet.plist on the client.
 	# On the client, it's going into /Library/LaunchDaemons/com.puppetlabs.puppet.plist
 	file { "/Library/LaunchDaemons/com.puppetlabs.puppet.plist":
