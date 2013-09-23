@@ -17,5 +17,11 @@ class testmodule::clientconfig{
 		mode => 755,
 		ensure => present,
 		}
+
+
+	#turns on puppetd n launchd
+	exec {'turns on puppetd n launchd':
+	  command => "launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist",
+	  }
 		
 }
