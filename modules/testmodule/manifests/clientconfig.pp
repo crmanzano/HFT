@@ -12,9 +12,10 @@ class testmodule::clientconfig{
 	# Puts /etc/puppet/modules/testmodule/puppet.conf on the client.
 	# On the client, it's going into /etc/puppet/puppet.conf
 	file { "/etc/puppet/puppet.conf":
-		source => "puppet:///modules/testmodule/files/puppet.conf",
+		source => "puppet:///modules/testmodule/puppet.conf",
 		owner => root,
-		mode => 755,
+		group => wheel,
+		mode => 644,
 		ensure => present,
 		}
 
