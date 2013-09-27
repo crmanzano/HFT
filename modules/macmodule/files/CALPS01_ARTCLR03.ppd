@@ -1,0 +1,2358 @@
+*PPD-Adobe: "4.3"
+*%
+*%  Printer Description file
+*%    for "RICOH Aficio SP 8100DN PS"
+*%
+*%    CreationDate: 2005/07/06
+*%    Modified:     2008/03/25
+*%
+*%    COPYRIGHT (C) 2008 RICOH COMPANY, LTD.
+*%    All rights reserved.
+*%
+
+*FileVersion: "1.2"
+*FormatVersion: "4.3"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*ModelName: "RICOH Aficio SP 8100DN"
+*PCFileName: "RC2161E3.PPD"
+*Manufacturer: "RICOH"
+*Product: "(RICOH Aficio SP 8100DN PS3)"
+*PSVersion: "(3015.102) 2"
+*ShortNickName: "RICOH Aficio SP 8100DN PS"
+*NickName: "RICOH Aficio SP 8100DN PS"
+*cupsFilter: "application/vnd.cups-postscript 0 /Library/Printers/RICOH/Filters/jobLogFilterC"
+*APDialogExtension: "/Library/Printers/RICOH/PDEs/ricohJobLogC.plugin"
+*DocumentServerSupport: "false"
+*LongPasswardSupport: "true"
+*StoredPrintSupport: "true"
+*StoreAndPrintSupport: "true"
+*NoJobTypeModel: "false"
+
+*%========== Basic Device Capabilities ==========
+
+*Protocols: TBCP
+
+*LanguageLevel: "3"
+*ColorDevice: False
+*DefaultColorSpace: Gray
+
+*TTRasterizer: Type42
+*?TTRasterizer: "
+   save
+      42 /FontType resourcestatus
+      { pop pop (Type42)} {pop pop (None)} ifelse = flush
+   restore
+"
+*End
+
+*FileSystem: True
+*?FileSystem: "
+  save
+  statusdict /diskonline get exec
+  {(True)}{(False)}ifelse = flush
+  restore
+"
+*End
+
+*Throughput: "45"
+
+*%========== Installable Options ==========
+*%========== & System Management ==========
+
+*OpenGroup: InstallableOptions/Installable Options
+
+*OpenUI *Option1/Lower Paper Trays: PickOne
+*DefaultOption1: False
+*Option1 False/Not Installed: ""
+*Option1 True/Installed: ""
+*?Option1: "
+save
+mark
+(False)
+userdict /86f6369627 known {
+	userdict /86f6369627 get 
+	/perifdict get /inslot get dup type /arraytype eq {
+	    {
+		dup 7 eq {(True) exit} if
+		pop
+	    } forall
+	}{pop} ifelse
+}if
+= flush
+cleartomark 
+restore
+"
+*End
+*CloseUI: *Option1
+
+*OpenUI *Option2/Large Capacity Tray: PickOne
+*DefaultOption2: False
+*Option2 False/Not Installed: ""
+*Option2 True/Installed: ""
+*?Option2: "
+save
+mark
+(False)
+userdict /86f6369627 known {
+	userdict /86f6369627 get 
+	/perifdict get /inslot get dup type /arraytype eq {
+	    {
+		dup 6 eq {(True) exit} if
+		pop
+	    } forall
+	}{pop} ifelse
+}if
+= flush
+cleartomark 
+restore
+"
+*End
+*CloseUI: *Option2
+
+*OpenUI *Option30/Finisher SR3040: PickOne
+*DefaultOption30: False
+*Option30 False/Not Installed: ""
+*Option30 True/Installed: ""
+*?Option30: "
+save
+mark
+(False)
+userdict /86f6369627 known {
+	userdict /86f6369627 get
+	/perifdict get /outslot get dup type /arraytype eq {
+	    {
+		dup 7 eq {(True) exit} if
+		pop
+	    } forall
+	}{pop} ifelse
+} if
+= flush
+cleartomark 
+restore
+"
+*End
+*CloseUI: *Option30
+
+*CloseGroup: InstallableOptions
+
+*FreeVM: "2261000"
+
+*Password: "0"
+*ExitServer: "
+  count 0 eq 
+  {false}{true exch startjob}ifelse
+  not {(WARNING: Cannot modify initial VM.) =
+       (Missing or invalid Password.) =
+       (Please contact the author.) = flush quit
+  }if
+"
+*End
+*Reset: "
+  count 0 eq
+  {false}{true exch startjob}ifelse
+  not {(WARNING: Cannot reset printer.) =
+       (Missing or invalid Password.) =
+       (Please contact the author.) = flush quit
+  }if 
+  systemdict /quit get exec
+  (WARNING: Printer Reset Failed.) = flush
+"
+*End
+
+*DefaultResolution: 600dpi
+*?Resolution: "
+  save
+  currentpagedevice /HWResolution get 0 get
+  (       ) cvs print (dpi) = flush
+  restore
+"
+*End
+
+*SuggestedJobTimeout: "0"
+*SuggestedWaitTimeout: "300"
+*PrintPSErrors: True
+*%DeviceAdjustMatrix: "[1 0 0 1 0 0]"
+
+*%========== Media Selection ==========
+*LandscapeOrientation: Minus90
+
+*OpenUI *RIPaperPolicy/Fit to Paper: PickOne
+*OrderDependency: 10 AnySetup *RIPaperPolicy
+*DefaultRIPaperPolicy: PromptUser
+*RIPaperPolicy PromptUser/Prompt User: "
+  <</DeferredMediaSelection true>> setpagedevice
+  <</Policies << /PageSize 2 /MediaType 2 >> >> setpagedevice"
+*End
+*RIPaperPolicy NearestSizeAdjust/Nearest Size and Scale: "
+  <</DeferredMediaSelection false>> setpagedevice
+  <</Policies << /PageSize 3 /MediaType 2 >> >> setpagedevice"
+*End
+*RIPaperPolicy NearestSizeNoAdjust/Nearest Size and Crop: "
+  <</DeferredMediaSelection false>> setpagedevice
+  <</Policies << /PageSize 5 /MediaType 2 >> >> setpagedevice"
+*End
+*CloseUI: *RIPaperPolicy
+
+*OpenUI *PageSize: PickOne
+*OrderDependency: 20 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize A3/A3: "<< 
+  /PageSize [842 1191] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize A4/A4: "<< 
+  /PageSize [595 842] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize A5/A5: "<< 
+  /PageSize [420 595] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize A6/A6: "<< 
+  /PageSize [298 420] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize B4/B4 (JIS): "<< 
+  /PageSize [729 1032] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize B5/B5 (JIS): "<< 
+  /PageSize [516 729] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize Legal/Legal: "<< 
+  /PageSize [612 1008] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize Letter/Letter: "<< 
+  /PageSize [612 792] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize HalfLetter/5.5x8.5: "<< 
+  /PageSize [396 612] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize 11x17/11x17: "<< 
+  /PageSize [792 1224] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize Executive/Executive: "<< 
+  /PageSize [522 756] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize F/8x13: "<< 
+  /PageSize [576 936] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize Folio/8.25x13: "<< 
+  /PageSize [595 935] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize FanFoldGermanLegal/8.5x13: "<< 
+  /PageSize [612 936] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageSize A3.FullBleed/A3 (Full Bleed): "<< 
+  /PageSize [842 1191] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize A4.FullBleed/A4 (Full Bleed): "<< 
+  /PageSize [595 842] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize A5.FullBleed/A5 (Full Bleed): "<< 
+  /PageSize [420 595] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize A6.FullBleed/A6 (Full Bleed): "<< 
+  /PageSize [298 420] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize B4.FullBleed/B4 (JIS) (Full Bleed): "<< 
+  /PageSize [729 1032] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize B5.FullBleed/B5 (JIS) (Full Bleed): "<< 
+  /PageSize [516 729] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize Legal.FullBleed/Legal (Full Bleed): "<< 
+  /PageSize [612 1008] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize Letter.FullBleed/Letter (Full Bleed): "<< 
+  /PageSize [612 792] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize HalfLetter.FullBleed/5.5x8.5 (Full Bleed): "<< 
+  /PageSize [396 612] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize 11x17.FullBleed/11x17 (Full Bleed): "<< 
+  /PageSize [792 1224] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize Executive.FullBleed/Executive (Full Bleed): "<< 
+  /PageSize [522 756] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize F.FullBleed/8x13 (Full Bleed): "<< 
+  /PageSize [576 936] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize Folio.FullBleed/8.25x13 (Full Bleed): "<< 
+  /PageSize [595 935] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*PageSize FanFoldGermanLegal.FullBleed/8.5x13 (Full Bleed): "<< 
+  /PageSize [612 936] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*?PageSize: "
+  save
+  currentpagedevice /PageSize get aload pop
+  2 copy gt {exch}if (Unknown)
+  28 dict
+    dup [842 1191] (A3) put
+    dup [595 842]  (A4) put
+    dup [420 595]  (A5) put
+    dup [298 420]  (A6) put
+    dup [729 1032] (B4) put
+    dup [516 729]  (B5) put
+    dup [612 1008] (Legal) put
+    dup [612 792]  (Letter) put
+    dup [396 612]  (HalfLetter) put
+    dup [792 1224] (11x17) put
+    dup [522 756] (Executive) put
+    dup [576 936] (F) put
+    dup [595 935] (Folio) put
+    dup [612 936] (FanFoldGermanLegal) put
+    dup [842 1191] (A3.FullBleed) put
+    dup [595 842]  (A4.FullBleed) put
+    dup [420 595]  (A5.FullBleed) put
+    dup [298 420]  (A6.FullBleed) put
+    dup [729 1032] (B4.FullBleed) put
+    dup [516 729]  (B5.FullBleed) put
+    dup [612 1008] (Legal.FullBleed) put
+    dup [612 792]  (Letter.FullBleed) put
+    dup [396 612]  (HalfLetter.FullBleed) put
+    dup [792 1224] (11x17.FullBleed) put
+    dup [522 756] (Executive.FullBleed) put
+    dup [576 936] (F.FullBleed) put
+    dup [595 935] (Folio.FullBleed) put
+    dup [612 936] (FanFoldGermanLegal.FullBleed) put
+    {exch aload pop 4 index sub abs 5 le exch 5 index
+     sub abs 5 le and {exch pop exit}{pop}ifelse 
+    }bind forall = flush pop pop
+    restore
+"
+*End
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 25 AnySetup *PageRegion
+*DefaultPageRegion: A4
+*PageRegion A3/A3: "<< 
+  /PageSize [842 1191] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion A4/A4: "<< 
+  /PageSize [595 842] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion A5/A5: "<< 
+  /PageSize [420 595] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion A6/A6: "<< 
+  /PageSize [298 420] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion B4/B4 (JIS): "<< 
+  /PageSize [729 1032] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion B5/B5 (JIS): "<< 
+  /PageSize [516 729] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion Legal/Legal: "<< 
+  /PageSize [612 1008] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion Letter/Letter: "<< 
+  /PageSize [612 792] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion HalfLetter/5.5x8.5: "<< 
+  /PageSize [396 612] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion 11x17/11x17: "<< 
+  /PageSize [792 1224] /ImagingBBox null >> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion Executive/Executive: "<< 
+  /PageSize [522 756] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion F/8x13: "<< 
+  /PageSize [576 936] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion Folio/8.25x13: "<< 
+  /PageSize [595 935] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion FanFoldGermanLegal/8.5x13: "<< 
+  /PageSize [612 936] /ImagingBBox null>> setpagedevice 
+  false setedgetoedge"
+*End
+*PageRegion A3.FullBleed/A3 (Full Bleed): "<< 
+  /PageSize [842 1191] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion A4.FullBleed/A4 (Full Bleed): "<< 
+  /PageSize [595 842] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion A5.FullBleed/A5 (Full Bleed): "<< 
+  /PageSize [420 595] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion A6.FullBleed/A6 (Full Bleed): "<< 
+  /PageSize [298 420] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion B4.FullBleed/B4 (JIS) (Full Bleed): "<< 
+  /PageSize [729 1032] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion B5.FullBleed/B5 (JIS) (Full Bleed): "<< 
+  /PageSize [516 729] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion Legal.FullBleed/Legal (Full Bleed): "<< 
+  /PageSize [612 1008] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion Letter.FullBleed/Letter (Full Bleed): "<< 
+  /PageSize [612 792] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion HalfLetter.FullBleed/5.5x8.5 (Full Bleed): "<< 
+  /PageSize [396 612] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion 11x17.FullBleed/11x17 (Full Bleed): "<< 
+  /PageSize [792 1224] /ImagingBBox null >> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion Executive.FullBleed/Executive (Full Bleed): "<< 
+  /PageSize [522 756] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion F.FullBleed/8x13 (Full Bleed): "<< 
+  /PageSize [576 936] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion Folio.FullBleed/8.25x13 (Full Bleed): "<< 
+  /PageSize [595 935] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*PageRegion FanFoldGermanLegal.FullBleed/8.5x13 (Full Bleed): "<< 
+  /PageSize [612 936] /ImagingBBox null>> setpagedevice 
+  true setedgetoedge"
+*End
+*CloseUI: *PageRegion
+
+*%========== Information About Media Sizes ==========
+
+*DefaultImageableArea: A4
+*ImageableArea A3/A3: "12 12 830 1179"
+*ImageableArea A4/A4: "12 12 583 830"
+*ImageableArea A5/A5: "12 12 408 583"
+*ImageableArea A6/A6: "12 12 286 408"
+*ImageableArea B4/B4 (JIS): "12 12 717 1020"
+*ImageableArea B5/B5 (JIS): "12 12 504 717"
+*ImageableArea Legal/Legal: "12 12 600 996"
+*ImageableArea Letter/Letter: "12 12 600 780"
+*ImageableArea HalfLetter/5.5x8.5: "12 12 384 600"
+*ImageableArea 11x17/11x17: "12 12 780 1212"
+*ImageableArea Executive/Executive: "12 12 510 744"
+*ImageableArea F/8x13: "12 12 564 924"
+*ImageableArea Folio/8.25x13: "12 12 583 923"
+*ImageableArea FanFoldGermanLegal/8.5x13: "12 12 600 924"
+*ImageableArea A3.FullBleed/A3 (Full Bleed): "0 0 842 1190"
+*ImageableArea A4.FullBleed/A4 (Full Bleed): "0 0 595 841"
+*ImageableArea A5.FullBleed/A5 (Full Bleed): "0 0 420 594"
+*ImageableArea A6.FullBleed/A6 (Full Bleed): "0 0 298 419"
+*ImageableArea B4.FullBleed/B4 (JIS) (Full Bleed): "0 0 729 1031"
+*ImageableArea B5.FullBleed/B5 (JIS) (Full Bleed): "0 0 516 728"
+*ImageableArea Legal.FullBleed/Legal (Full Bleed): "0 0 612 1007"
+*ImageableArea Letter.FullBleed/Letter (Full Bleed): "0 0 612 791"
+*ImageableArea HalfLetter.FullBleed/5.5x8.5 (Full Bleed): "0 0 396 611"
+*ImageableArea 11x17.FullBleed/11x17 (Full Bleed): "0 0 792 1223"
+*ImageableArea Executive.FullBleed/Executive (Full Bleed): "0 0 522 755"
+*ImageableArea F.FullBleed/8x13 (Full Bleed): "0 0 576 935"
+*ImageableArea Folio.FullBleed/8.25x13 (Full Bleed): "0 0 595 934"
+*ImageableArea FanFoldGermanLegal.FullBleed/8.5x13 (Full Bleed): "0 0 612 935"
+*?ImageableArea: "
+  save
+  /cvp {(            ) cvs print (               ) print}bind def
+  newpath clippath pathbbox 4 -2 roll exch
+  2 {10000 mul ceiling 10000 div cvp}repeat exch
+  2 {10000 mul floor 10000 div cvp}repeat flush
+  restore
+"
+*End
+
+*DefaultPaperDimension: A4
+*PaperDimension A3/A3: "842 1191"
+*PaperDimension A4/A4: "595 842"
+*PaperDimension A5/A5: "420 595"
+*PaperDimension A6/A6: "298 420"
+*PaperDimension B4/B4 (JIS): "729 1032"
+*PaperDimension B5/B5 (JIS): "516 729"
+*PaperDimension Legal/Legal: "612 1008"
+*PaperDimension Letter/Letter: "612 792"
+*PaperDimension HalfLetter/5.5x8.5: "396 612"
+*PaperDimension 11x17/11x17: "792 1224"
+*PaperDimension Executive/Executive: "522 756"
+*PaperDimension F/8x13: "576 936"
+*PaperDimension Folio/8.25x13: "595 935"
+*PaperDimension FanFoldGermanLegal/8.5x13: "612 936"
+*PaperDimension A3.FullBleed/A3 (Full Bleed): "842 1190"
+*PaperDimension A4.FullBleed/A4 (Full Bleed): "595 841"
+*PaperDimension A5.FullBleed/A5 (Full Bleed): "420 594"
+*PaperDimension A6.FullBleed/A6 (Full Bleed): "298 419"
+*PaperDimension B4.FullBleed/B4 (JIS) (Full Bleed): "729 1031"
+*PaperDimension B5.FullBleed/B5 (JIS) (Full Bleed): "516 728"
+*PaperDimension Legal.FullBleed/Legal (Full Bleed): "612 1007"
+*PaperDimension Letter.FullBleed/Letter (Full Bleed): "612 791"
+*PaperDimension HalfLetter.FullBleed/5.5x8.5 (Full Bleed): "396 611"
+*PaperDimension 11x17.FullBleed/11x17 (Full Bleed): "792 1223"
+*PaperDimension Executive.FullBleed/Executive (Full Bleed): "522 755"
+*PaperDimension F.FullBleed/8x13 (Full Bleed): "576 935"
+*PaperDimension Folio.FullBleed/8.25x13 (Full Bleed): "595 934"
+*PaperDimension FanFoldGermanLegal.FullBleed/8.5x13 (Full Bleed): "612 935"
+
+*%========== Media Handling Features ==========
+
+*OpenUI *InputSlot: PickOne
+*OrderDependency: 30 AnySetup *InputSlot
+*DefaultInputSlot: 1Tray
+*InputSlot MultiTray/Bypass Tray: "<</MediaPosition 0>> setpagedevice"
+*InputSlot 1Tray/Tray 1: "<</MediaPosition 1>> setpagedevice"
+*InputSlot 2Tray/Tray 2: "<</MediaPosition 2>> setpagedevice"
+*InputSlot 3Tray/Tray 3: "<</MediaPosition 3>> setpagedevice"
+*InputSlot 4Tray/Tray 4: "<</MediaPosition 4>> setpagedevice"
+*InputSlot 5Tray/Large Capacity Tray: "<</MediaPosition 5>> setpagedevice"
+*?InputSlot: "
+  save
+  [(MultiTray)(1Tray)(2Tray)(3Tray)(4Tray)(5Tray)]
+  statusdict /papertray get exec {get}stopped
+  {pop pop (Unknown)}if = flush
+  restore
+"
+*End
+*CloseUI: *InputSlot
+
+*%=== Custom Paper Support =================
+*LeadingEdge Short: ""
+*LeadingEdge Long: ""
+*DefaultLeadingEdge: Short
+
+*MaxMediaWidth:  "842"
+*MaxMediaHeight: "1701"
+*HWMargins:      12 12 12 12
+*CustomPageSize True: "pop pop pop 
+  << /PageSize [ 5 -2 roll ]  /ImagingBBox null
+  /Policies <</PageSize 2 /MediaType 2>>
+  /DeferredMediaSelection true
+  >> setpagedevice"
+*End
+
+*ParamCustomPageSize Width:        1 points 283 842
+*ParamCustomPageSize Height:       2 points 419 1701
+*ParamCustomPageSize WidthOffset:  3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation:  5 int 1 1
+
+*NonUIOrderDependency: 21 AnySetup *CustomPageSize True
+
+*RequiresPageRegion MultiTray: True
+*RequiresPageRegion 1Tray: True
+*RequiresPageRegion 2Tray: True
+*RequiresPageRegion 3Tray: True
+*RequiresPageRegion 4Tray: True
+*RequiresPageRegion 5Tray: True
+
+*OpenUI *Duplex/Duplex: PickOne
+*OrderDependency: 50 AnySetup *Duplex
+*DefaultDuplex: None
+*Duplex None/Off: "<</Duplex false>>setpagedevice"
+*Duplex DuplexNoTumble/Long Edge: "<</Duplex true /Tumble false>>setpagedevice"
+*Duplex DuplexTumble/Short Edge: "<</Duplex true /Tumble true>>setpagedevice"
+*?Duplex: "
+  save
+  currentpagedevice /Duplex get
+  {currentpagedevice /Tumble get
+    {(DuplexTumble)}{(DuplexNoTumble)}ifelse
+  }{(None)}ifelse = flush
+  restore
+"
+*End
+*CloseUI: *Duplex
+
+*%========== Resolution and Appearance Control ==========
+
+*OpenUI *RICollate/Collate: PickOne
+*OrderDependency: 200 AnySetup *RICollate
+*DefaultRICollate: False
+*RICollate False/Off: "<</Collate false>>setpagedevice"
+*RICollate True/On: "<</Collate true
+  /CollateDetails <</Type 6 /AlignSet true>>
+  >>setpagedevice"
+*End
+*?RICollate: "
+  save
+  currentpagedevice /Collate get 
+  {{(True)}{(False)}ifelse }stopped {(Unknown)}if = flush
+  restore
+"
+*End
+*CloseUI: *RICollate
+
+*OpenUI *RIPrintMode/Print Mode: PickOne
+*OrderDependency: 45 AnySetup *RIPrintMode
+*DefaultRIPrintMode: 1rhit
+*RIPrintMode 0rhit/Through: "<<
+  /HWResolution[600 600]
+  /PostRenderingEnhance false
+  >> setpagedevice"
+*End
+*RIPrintMode 1rhit/Edge Smoothing: "<<
+  /HWResolution[600 600]
+  /PostRenderingEnhance true /PostRenderingEnhanceDetails << /Type 34 /OutputMode 0>>
+  >> setpagedevice"
+*End
+*RIPrintMode 5rhit/Toner Saving 1: "<<
+  /HWResolution[600 600]
+  /PostRenderingEnhance true /PostRenderingEnhanceDetails << /Type 34 /OutputMode 3>>
+  >> setpagedevice"
+*End
+*RIPrintMode 4rhit/Toner Saving 2: "<<
+  /HWResolution[600 600]
+  /PostRenderingEnhance true /PostRenderingEnhanceDetails << /Type 34 /OutputMode 4>>
+  >> setpagedevice"
+*End
+*?RIPrintMode: "
+  save
+  /UK (Unknown) def
+  {
+    currentpagedevice dup /PostRenderingEnhance 2 copy known not { UK exit } if
+    get dup false eq {pop (0rhit) exit }
+    {pop /PostRenderingEnhanceDetails get dup /OutputMode get
+    dup 0 eq {pop (1rhit) exit} if
+    dup 3 eq {pop (5rhit) exit} if
+    dup 4 eq {pop (4rhit) exit} if
+    UK exit
+    } ifelse
+  } bind loop
+  mark count 1 sub 2 roll cleartomark
+  = flush
+  restore
+"
+*End
+*CloseUI: *RIPrintMode
+
+*OpenUI *RPSDitherType/Dithering: PickOne
+*OrderDependency: 130 AnySetup *RPSDitherType
+*DefaultRPSDitherType: Auto
+*RPSDitherType Auto/Auto: "(auto) RCsethalftonetype"
+*RPSDitherType Photo/Photographic: "(photo) RCsethalftonetype"
+*RPSDitherType Letter/Text: "(text) RCsethalftonetype"
+*RPSDitherType User/User Setting: "(user) RCsethalftonetype"
+*CloseUI: *RPSDitherType
+
+*OpenUI *Rimagesm/Image Smoothing: PickOne
+*OrderDependency: 160 AnySetup *Rimagesm
+*DefaultRimagesm: Off
+*Rimagesm Off/Off: "(off) /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*Rimagesm On/On: "(on) /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*Rimagesm Auto/Auto: "(auto) /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*Rimagesm 90ppi/Less than 90 ppi: "90 /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*Rimagesm 150ppi/Less than 150 ppi: "150 /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*Rimagesm 200ppi/Less than 200 ppi: "200 /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*Rimagesm 300ppi/Less than 300 ppi: "300 /RDeviceProcSet /ProcSet findresource /SetImageInterpolate get exec"
+*CloseUI: *Rimagesm
+
+*OpenUI *MediaType/Paper Type: PickOne
+*OrderDependency: 205 AnySetup *MediaType
+*MediaType Auto/Plain/Recycled: "<< /MediaType (Auto) >> setpagedevice"
+*MediaType Plain/Plain: "<< /MediaType (Plain) >> setpagedevice"
+*MediaType Recycled/Recycled: "<< /MediaType (Recycled) >> setpagedevice"
+*MediaType Special/Special: "<< /MediaType (Special) >> setpagedevice"
+*MediaType Colored/Color: "<< /MediaType (Color) >> setpagedevice"
+*MediaType Letterhead/Letterhead: "<< /MediaType (Letterhead) >> setpagedevice"
+*MediaType Preprinted/Preprinted: "<< /MediaType (Preprinted) >> setpagedevice"
+*MediaType Prepunched/Prepunched: "<< /MediaType (Prepunched) >> setpagedevice"
+*MediaType Labels/Labels: "<< /MediaType (Labels) >> setpagedevice"
+*MediaType Bond/Bond: "<< /MediaType (Bond) >> setpagedevice"
+*MediaType Cardstock/Cardstock: "<< /MediaType (Cardstock) >> setpagedevice"
+*MediaType OHP/Transparency: "<< /MediaType (Transparency) >> setpagedevice"
+*MediaType Thick/Thick: "<< /MediaType (Thick) >> setpagedevice"
+*MediaType None/None: "<< /MediaType (None) >> setpagedevice"
+*?MediaType: "
+  save
+  /UK (Unknown) def
+  {
+    currentpagedevice /MediaType 2 copy known not { UK exit } if
+    get dup null eq 1 index (Plain) eq or { (Plain) exit } if
+    dup (Auto) eq { dup exit } if
+    dup (Recycled) eq { dup exit } if
+    dup (Special) eq { dup exit } if
+    dup (Color) eq { (Colored) exit } if
+    dup (Letterhead) eq { dup exit } if
+    dup (Preprinted) eq { dup exit } if
+    dup (Prepunched) eq { dup exit } if
+    dup (Labels) eq { dup exit } if
+    dup (Bond) eq { dup exit } if
+    dup (Cardstock) eq { dup exit } if
+    dup (Transparency) eq { (OHP) exit } if
+    dup (Thick) eq { dup exit } if
+    dup (None) eq { dup exit } if
+    UK exit
+  } bind loop
+  mark count 1 sub 2 roll cleartomark
+  = flush
+  restore
+"
+*End
+*DefaultMediaType: Auto
+*CloseUI: *MediaType
+
+*OpenUI *OutputBin/Destination: PickOne
+*OrderDependency: 210 AnySetup *OutputBin
+*OutputBin Default/Printer Default: "<</OutputType null>>setpagedevice"
+*OutputBin Standard/Standard Tray: "<</OutputType (Standard)>>setpagedevice"
+*OutputBin FinProof/Finisher SR3040 Upper Tray: "<</OutputType (FinProof)>>setpagedevice"
+*OutputBin FinShift/Finisher SR3040 Shift Tray: "<</OutputType (FinShift)>>setpagedevice"
+*DefaultOutputBin: Default
+*?OutputBin: "
+  save
+  currentpagedevice /OutputType get = flush
+  restore
+"
+*End
+*CloseUI: *OutputBin
+
+*OpenUI *StapleLocation/Staple: PickOne
+*OrderDependency: 220 AnySetup *StapleLocation
+*DefaultStapleLocation: None
+*StapleLocation None/Off: "<< /Staple 0 >> setpagedevice"
+*StapleLocation UpperLeft/Top left: "<< 
+  /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 0 >>
+  >> setpagedevice"
+*End
+*StapleLocation UpperRight/Top right: "<< 
+  /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 6 >>
+  >> setpagedevice"
+*End
+*StapleLocation LowerLeft/Bottom left: " 
+  1 /RDeviceProcSet /ProcSet findresource /SetImageRotation get exec
+  << /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 6 >>
+  >> setpagedevice"
+*End
+*StapleLocation LowerRight/Bottom right: " 
+  1 /RDeviceProcSet /ProcSet findresource /SetImageRotation get exec
+  << /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 0 >>
+  >> setpagedevice"
+*End
+*StapleLocation LeftW/2 at left: "<< 
+  /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 1 >>
+  >> setpagedevice"
+*End
+*StapleLocation RightW/2 at right: "<< 
+  /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 5 >>
+  >> setpagedevice"
+*End
+*StapleLocation UpperW/2 at top: "<< 
+  /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 7 >>
+  >> setpagedevice"
+*End
+*StapleLocation LowerW/2 at bottom: " 
+  1 /RDeviceProcSet /ProcSet findresource /SetImageRotation get exec
+  << /Collate true  /CollateDetails <</Type 6 /AlignSet true>>
+  /Staple 2  /StapleDetails << /Type 14 /Angle 0 /Position 7 >>
+  >> setpagedevice"
+*End
+*?StapleLocation: "
+  save
+  /UK (Unknown) def
+  {
+    currentpagedevice dup /Staple 2 copy known not { UK exit } if
+    get dup 0 eq {pop (None) exit }
+    {pop /StapleDetails get dup /Position get
+    dup 0 eq {pop (UpperLeft) exit} if
+    dup 6 eq {pop (UpperRight) exit} if
+    dup 1 eq {pop (LeftW) exit} if
+    dup 5 eq {pop (RightW) exit} if
+    dup 7 eq {pop (UpperW) exit} if
+    UK exit
+    } ifelse
+  } bind loop
+  mark count 1 sub 2 roll cleartomark
+  = flush
+  restore
+"
+*End
+*CloseUI: *StapleLocation
+
+*OpenUI *RIPunch/Punch: PickOne
+*OrderDependency: 230 AnySetup *RIPunch
+*RIPunch None/Off: "<< /Punch 0 >> setpagedevice"
+*RIPunch Left2/2 at left: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 0 /NumHoles 2 >> >> setpagedevice"
+*End
+*RIPunch Left3/3 at left: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 0 /NumHoles 3 >> >> setpagedevice"
+*End
+*RIPunch Left4/4 at left: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 0 /NumHoles 4 >> >> setpagedevice"
+*End
+*RIPunch Right2/2 at right: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 2 /NumHoles 2 >> >> setpagedevice"
+*End
+*RIPunch Right3/3 at right: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 2 /NumHoles 3 >> >> setpagedevice"
+*End
+*RIPunch Right4/4 at right: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 2 /NumHoles 4 >> >> setpagedevice"
+*End
+*RIPunch Upper2/2 at top: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 3 /NumHoles 2 >> >> setpagedevice"
+*End
+*RIPunch Upper3/3 at top: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 3 /NumHoles 3 >> >> setpagedevice"
+*End
+*RIPunch Upper4/4 at top: "<< /Punch 2
+  /PunchDetails << /Type 4 /Position 3 /NumHoles 4 >> >> setpagedevice"
+*End
+*RIPunch Lower2/2 at bottom: "
+  1 /RDeviceProcSet /ProcSet findresource /SetImageRotation get exec
+  << /Punch 2 /PunchDetails << /Type 4 /Position 3 /NumHoles 2 >> >> setpagedevice"
+*End
+*RIPunch Lower3/3 at bottom: "
+  1 /RDeviceProcSet /ProcSet findresource /SetImageRotation get exec
+  << /Punch 2 /PunchDetails << /Type 4 /Position 3 /NumHoles 3 >> >> setpagedevice"
+*End
+*RIPunch Lower4/4 at bottom: "
+  1 /RDeviceProcSet /ProcSet findresource /SetImageRotation get exec
+  << /Punch 2 /PunchDetails << /Type 4 /Position 3 /NumHoles 4 >> >> setpagedevice"
+*End
+*DefaultRIPunch: None
+*?RIPunch: "
+  save
+  /UK (Unknown) def
+  {
+    currentpagedevice dup /Punch 2 copy known not { UK exit } if
+    get dup 0 eq {pop (None) exit }
+    {pop /PunchDetails get dup /Position get
+    dup 0 eq {pop (Left2) exit} if
+    dup 2 eq {pop (Right2) exit} if
+    dup 3 eq {pop (Upper2) exit} if
+    UK exit
+    } ifelse
+  } bind loop
+  mark count 1 sub 2 roll cleartomark
+  = flush
+  restore
+"
+*End
+*CloseUI: *RIPunch
+
+*OpenUI *RIOrientOvr/Orientation Override: PickOne
+*OrderDependency: 170 AnySetup *RIOrientOvr
+*RIOrientOvr Off/Off: ""
+*RIOrientOvr Landscape/Landscape: "
+  1 /RDeviceProcSet /ProcSet findresource /SetOrientationOverride get exec"
+*End
+*RIOrientOvr Portrait/Portrait: "
+  0 /RDeviceProcSet /ProcSet findresource /SetOrientationOverride get exec"
+*End
+*DefaultRIOrientOvr: Off
+*CloseUI: *RIOrientOvr
+
+*%========== Gray Levels and Halftoning ==========
+*AccurateScreensSupport: True
+*ScreenFreq: "85.0"
+*ScreenAngle: "45.0"
+*DefaultScreenProc: Dot
+*ScreenProc Dot: "
+  {abs exch abs 2 copy add 1 gt
+   {1 sub dup mul exch 1 sub dup mul add 1 sub}
+   {dup mul exch dup mul add 1 exch sub}
+   ifelse}
+"
+*End
+*ScreenProc Line: "{pop}"
+*ScreenProc Ellipse: "
+  {dup 5 mul 8 div mul exch dup mul exch add sqrt 1 exch sub}
+"
+*End
+
+*%========== Font ==========
+
+*DefaultFont: Courier
+*Font AlbertusMT: Standard "(001.000)" Standard ROM
+*Font AlbertusMT-Italic: Standard "(001.000)" Standard ROM
+*Font AlbertusMT-Light: Standard "(001.000)" Standard ROM
+*Font AntiqueOlive-Bold: Standard "(501.009)" ExtendedRoman ROM
+*Font AntiqueOlive-Compact: Standard "(501.008)" ExtendedRoman ROM
+*Font AntiqueOlive-Italic: Standard "(501.010)" ExtendedRoman ROM
+*Font AntiqueOlive-Roman: Standard "(501.008)" ExtendedRoman ROM
+*Font Apple-Chancery: Standard "(001.001)" ExtendedRoman ROM
+*Font ArialMT: Standard "(501.009)" ExtendedRoman ROM
+*Font Arial-BoldMT: Standard "(501.009)" ExtendedRoman ROM
+*Font Arial-BoldItalicMT: Standard "(501.009)" ExtendedRoman ROM
+*Font Arial-ItalicMT: Standard "(501.012)" ExtendedRoman ROM
+*Font AvantGarde-Book: Standard "(501.009)" ExtendedRoman ROM
+*Font AvantGarde-BookOblique: Standard "(501.009)" ExtendedRoman ROM
+*Font AvantGarde-Demi: Standard "(501.010)" ExtendedRoman ROM
+*Font AvantGarde-DemiOblique: Standard "(501.010)" ExtendedRoman ROM
+*Font Bodoni: Standard "(501.008)" ExtendedRoman ROM
+*Font Bodoni-Bold: Standard "(501.006)" ExtendedRoman ROM
+*Font Bodoni-BoldItalic: Standard "(501.007)" ExtendedRoman ROM
+*Font Bodoni-Italic: Standard "(501.007)" ExtendedRoman ROM
+*Font Bodoni-Poster: Standard "(501.009)" ExtendedRoman ROM
+*Font Bodoni-PosterCompressed: Standard "(501.007)" ExtendedRoman ROM
+*Font Bookman-Demi: Standard "(501.007)" ExtendedRoman ROM
+*Font Bookman-DemiItalic: Standard "(501.008)" ExtendedRoman ROM
+*Font Bookman-Light: Standard "(501.006)" ExtendedRoman ROM
+*Font Bookman-LightItalic: Standard "(501.007)" ExtendedRoman ROM
+*Font Carta: Special "(001.001)" Special ROM
+*Font Chicago: Standard "(501.011)" ExtendedRoman ROM
+*Font Clarendon-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font Clarendon-Light: Standard "(501.009)" ExtendedRoman ROM
+*Font Clarendon: Standard "(501.009)" ExtendedRoman ROM
+*Font CooperBlack-Italic: Standard "(001.003)" Standard ROM
+*Font CooperBlack: Standard "(001.003)" Standard ROM
+*Font Copperplate-ThirtyThreeBC: Standard "(001.002)" Standard ROM
+*Font Copperplate-ThirtyTwoBC: Standard "(001.002)" Standard ROM
+*Font Coronet-Regular: Standard "(001.000)" ExtendedRoman ROM
+*Font Courier-Bold: Standard "(501.010)" ExtendedRoman ROM
+*Font Courier-BoldOblique: Standard "(501.010)" ExtendedRoman ROM
+*Font Courier-Oblique: Standard "(501.010)" ExtendedRoman ROM
+*Font Courier: Standard "(501.010)" ExtendedRoman ROM
+*Font Eurostile-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font Eurostile-BoldExtendedTwo: Standard "(501.008)" ExtendedRoman ROM
+*Font Eurostile-ExtendedTwo: Standard "(501.010)" ExtendedRoman ROM
+*Font Eurostile: Standard "(501.008)" ExtendedRoman ROM
+*Font Geneva: Standard "(501.007)" ExtendedRoman ROM
+*Font GillSans: Standard "(501.009)" ExtendedRoman ROM
+*Font GillSans-Bold: Standard "(501.007)" ExtendedRoman ROM
+*Font GillSans-BoldCondensed: Standard "(501.006)" ExtendedRoman ROM
+*Font GillSans-BoldItalic: Standard "(501.008)" ExtendedRoman ROM
+*Font GillSans-Condensed: Standard "(501.007)" ExtendedRoman ROM
+*Font GillSans-ExtraBold: Standard "(501.008)" ExtendedRoman ROM
+*Font GillSans-Italic: Standard "(501.008)" ExtendedRoman ROM
+*Font GillSans-Light: Standard "(501.009)" ExtendedRoman ROM
+*Font GillSans-LightItalic: Standard "(501.009)" ExtendedRoman ROM
+*Font Goudy: Standard "(001.003)" Standard ROM
+*Font Goudy-Bold: Standard "(001.002)" Standard ROM
+*Font Goudy-BoldItalic: Standard "(001.002)" Standard ROM
+*Font Goudy-ExtraBold: Standard "(001.001)" Standard ROM
+*Font Goudy-Italic: Standard "(001.002)" Standard ROM
+*Font Helvetica: Standard "(501.008)" ExtendedRoman ROM
+*Font Helvetica-Bold: Standard "(501.010)" ExtendedRoman ROM
+*Font Helvetica-BoldOblique: Standard "(501.010)" ExtendedRoman ROM
+*Font Helvetica-Condensed-Bold: Standard "(501.009)" ExtendedRoman ROM
+*Font Helvetica-Condensed-BoldObl: Standard "(501.009)" ExtendedRoman ROM
+*Font Helvetica-Condensed-Oblique: Standard "(501.010)" ExtendedRoman ROM
+*Font Helvetica-Condensed: Standard "(501.010)" ExtendedRoman ROM
+*Font Helvetica-Narrow-Bold: Standard "(501.010)" ExtendedRoman ROM
+*Font Helvetica-Narrow-BoldOblique: Standard "(501.010)" ExtendedRoman ROM
+*Font Helvetica-Narrow-Oblique: Standard "(501.008)" ExtendedRoman ROM
+*Font Helvetica-Narrow: Standard "(501.008)" ExtendedRoman ROM
+*Font Helvetica-Oblique: Standard "(501.008)" ExtendedRoman ROM
+*Font HoeflerText-Black: Standard "(501.008)" ExtendedRoman ROM
+*Font HoeflerText-BlackItalic: Standard "(501.009)" ExtendedRoman ROM
+*Font HoeflerText-Italic: Standard "(501.010)" ExtendedRoman ROM
+*Font HoeflerText-Ornaments: Special "(001.001)" Special ROM
+*Font HoeflerText-Regular: Standard "(501.009)" ExtendedRoman ROM
+*Font JoannaMT: Standard "(501.009)" ExtendedRoman ROM
+*Font JoannaMT-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font JoannaMT-BoldItalic: Standard "(501.008)" ExtendedRoman ROM
+*Font JoannaMT-Italic: Standard "(501.008)" ExtendedRoman ROM
+*Font LetterGothic: Standard "(501.009)" ExtendedRoman ROM
+*Font LetterGothic-Bold: Standard "(501.010)" ExtendedRoman ROM
+*Font LetterGothic-BoldSlanted: Standard "(501.010)" ExtendedRoman ROM
+*Font LetterGothic-Slanted: Standard "(501.010)" ExtendedRoman ROM
+*Font LubalinGraph-Book: Standard "(501.009)" ExtendedRoman ROM
+*Font LubalinGraph-BookOblique: Standard "(501.009)" ExtendedRoman ROM
+*Font LubalinGraph-Demi: Standard "(501.009)" ExtendedRoman ROM
+*Font LubalinGraph-DemiOblique: Standard "(501.009)" ExtendedRoman ROM
+*Font Marigold: Standard "(001.000)" Standard ROM
+*Font MonaLisa-Recut: Standard "(001.000)" Standard ROM
+*Font Monaco: Standard "(501.012)" ExtendedRoman ROM
+*Font NewCenturySchlbk-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font NewCenturySchlbk-BoldItalic: Standard "(501.009)" ExtendedRoman ROM
+*Font NewCenturySchlbk-Italic: Standard "(501.011)" ExtendedRoman ROM
+*Font NewCenturySchlbk-Roman: Standard "(501.008)" ExtendedRoman ROM
+*Font NewYork: Standard "(501.013)" ExtendedRoman ROM
+*Font Optima-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font Optima-BoldItalic: Standard "(501.009)" ExtendedRoman ROM
+*Font Optima-Italic: Standard "(501.010)" ExtendedRoman ROM
+*Font Optima: Standard "(501.010)" ExtendedRoman ROM
+*Font Oxford: Standard "(001.000)" Standard ROM
+*Font Palatino-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font Palatino-BoldItalic: Standard "(501.007)" ExtendedRoman ROM
+*Font Palatino-Italic: Standard "(501.008)" ExtendedRoman ROM
+*Font Palatino-Roman: Standard "(501.006)" ExtendedRoman ROM
+*Font StempelGaramond-Bold: Standard "(501.007)" ExtendedRoman ROM
+*Font StempelGaramond-BoldItalic: Standard "(501.012)" ExtendedRoman ROM
+*Font StempelGaramond-Italic: Standard "(501.009)" ExtendedRoman ROM
+*Font StempelGaramond-Roman: Standard "(501.011)" ExtendedRoman ROM
+*Font Symbol: Special "(001.008)" Special ROM
+*Font Tekton: Standard "(001.001)" Standard ROM
+*Font Times-Bold: Standard "(501.009)" ExtendedRoman ROM
+*Font Times-BoldItalic: Standard "(501.009)" ExtendedRoman ROM
+*Font Times-Italic: Standard "(501.010)" ExtendedRoman ROM
+*Font Times-Roman: Standard "(501.010)" ExtendedRoman ROM
+*Font TimesNewRomanPS-BoldItalicMT: Standard "(501.011)" ExtendedRoman ROM
+*Font TimesNewRomanPS-BoldMT: Standard "(501.009)" ExtendedRoman ROM
+*Font TimesNewRomanPS-ItalicMT: Standard "(501.011)" ExtendedRoman ROM
+*Font TimesNewRomanPSMT: Standard "(501.010)" ExtendedRoman ROM
+*Font Univers: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-Bold: Standard "(501.008)" ExtendedRoman ROM
+*Font Univers-BoldExt: Standard "(501.010)" ExtendedRoman ROM
+*Font Univers-BoldExtObl: Standard "(501.010)" ExtendedRoman ROM
+*Font Univers-BoldOblique: Standard "(501.008)" ExtendedRoman ROM
+*Font Univers-Condensed: Standard "(501.011)" ExtendedRoman ROM
+*Font Univers-CondensedBold: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-CondensedBoldOblique: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-CondensedOblique: Standard "(501.011)" ExtendedRoman ROM
+*Font Univers-Extended: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-ExtendedObl: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-Light: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-LightOblique: Standard "(501.009)" ExtendedRoman ROM
+*Font Univers-Oblique: Standard "(501.009)" ExtendedRoman ROM
+*Font Wingdings-Regular: Special "(001.001)" Special ROM
+*Font ZapfChancery-MediumItalic: Standard "(002.000)" ExtendedRoman ROM
+*Font ZapfDingbats: Special "(001.005S)" Special ROM
+
+*?FontQuery: "
+  save
+  {count 1 gt {
+    exch dup 127 string cvs (/) print print (:) print
+    /Font resourcestatus {pop pop (Yes)}{(NO)}ifelse =
+    }{exit}ifelse 
+  }bind loop (*) = flush
+  restore
+"
+*End
+
+*?FontList: "
+  save
+  (*) {cvn ==} 128 string /Font resourceforall (*) = flush
+  restore
+"
+*End
+
+*Status: "initializing"
+*Status: "holding"
+*Status: "idle"
+*Status: "busy"
+*Status: "waiting"
+*Status: "printing"
+*Status: "print test page"
+
+*Source: "Parallel"
+*Source: "TCP/IP"
+*Source: "EtherTalk"
+*Source: "SPX/IPX"
+*Source: "NetBEUI"
+*Source: "IEEE1394"
+
+*Message: "%%[ exitserver: permanent state may be changed ]%%"
+*Message: "%%[ Flushing: rest of job (to end-of-file) will be ignored ]%%"
+*Message: "\FontName\ not found, using Courier"
+
+*%========== Color Separation ==========
+
+*DefaultColorSep: ProcessBlack.106lpi.600dpi/106 lpi / 600 dpi
+
+*%===== For 106 lpi / 600 dpi =====
+
+*ColorSepScreenAngle ProcessBlack.106lpi.600dpi/106 lpi / 600 dpi: "45.0"
+*ColorSepScreenAngle CustomColor.106lpi.600dpi/106 lpi / 600 dpi: "45.0"
+*ColorSepScreenAngle ProcessCyan.106lpi.600dpi/106 lpi / 600 dpi: "45.0"
+*ColorSepScreenAngle ProcessMagenta.106lpi.600dpi/106 lpi / 600 dpi: "45.0"
+*ColorSepScreenAngle ProcessYellow.106lpi.600dpi/106 lpi / 600 dpi: "45.0"
+
+*ColorSepScreenFreq ProcessBlack.106lpi.600dpi/106 lpi / 600 dpi: "106"
+*ColorSepScreenFreq CustomColor.106lpi.600dpi/106 lpi / 600 dpi: "106"
+*ColorSepScreenFreq ProcessCyan.106lpi.600dpi/106 lpi / 600 dpi: "106"
+*ColorSepScreenFreq ProcessMagenta.106lpi.600dpi/106 lpi / 600 dpi: "106"
+*ColorSepScreenFreq ProcessYellow.106lpi.600dpi/106 lpi / 600 dpi: "106"
+
+*% end of Printer Description file
+*% Danish localization
+*da.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*da.Translation InstallableOptions/Installerbart ekstraudstyr: ""
+*da.Translation Option1/Nedre papirkassetter: ""
+*da.Option1 False/Ikke installeret: ""
+*da.Option1 True/Installeret: ""
+*da.Translation Option2/Elevatorkassette: ""
+*da.Option2 False/Ikke installeret: ""
+*da.Option2 True/Installeret: ""
+*da.Translation Option30/Efterbehandler SR3040: ""
+*da.Option30 False/Ikke installeret: ""
+*da.Option30 True/Installeret: ""
+*da.Translation General/General: ""
+*da.Translation RIPaperPolicy/Tilpas til papir: ""
+*da.RIPaperPolicy PromptUser/Anmod bruger: ""
+*da.RIPaperPolicy NearestSizeAdjust/NÃ¦rmeste format og skalering: ""
+*da.RIPaperPolicy NearestSizeNoAdjust/NÃ¦rmeste format og beskÃ¦ring: ""
+*da.Translation PageSize/Media Size: ""
+*da.PageSize A3/A3: ""
+*da.PageSize A4/A4: ""
+*da.PageSize A5/A5: ""
+*da.PageSize A6/A6: ""
+*da.PageSize B4/B4 (JIS): ""
+*da.PageSize B5/B5 (JIS): ""
+*da.PageSize Legal/Legal: ""
+*da.PageSize Letter/Letter: ""
+*da.PageSize HalfLetter/5,5x8,5: ""
+*da.PageSize 11x17/11x17: ""
+*da.PageSize Executive/Executive: ""
+*da.PageSize F/8x13: ""
+*da.PageSize Folio/8,25x13: ""
+*da.PageSize FanFoldGermanLegal/8,5x13: ""
+*da.PageSize A3.FullBleed/A3 (Fuldt tryk): ""
+*da.PageSize A4.FullBleed/A4 (Fuldt tryk): ""
+*da.PageSize A5.FullBleed/A5 (Fuldt tryk): ""
+*da.PageSize A6.FullBleed/A6 (Fuldt tryk): ""
+*da.PageSize B4.FullBleed/B4 JIS (Fuldt tryk): ""
+*da.PageSize B5.FullBleed/B5 JIS (Fuldt tryk): ""
+*da.PageSize Legal.FullBleed/Legal (Fuldt tryk): ""
+*da.PageSize Letter.FullBleed/Letter (Fuldt tryk): ""
+*da.PageSize HalfLetter.FullBleed/5,5x8,5 (Fuldt tryk): ""
+*da.PageSize 11x17.FullBleed/11x17 (Fuldt tryk): ""
+*da.PageSize Executive.FullBleed/Executive (Fuldt tryk): ""
+*da.PageSize F.FullBleed/8x13 (Fuldt tryk): ""
+*da.PageSize Folio.FullBleed/8,25x13 (Fuldt tryk): ""
+*da.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (Fuldt tryk): ""
+*da.PageSize Custom/Custom: ""
+*da.Translation PageRegion/PageRegion: ""
+*da.PageRegion A3/A3: ""
+*da.PageRegion A4/A4: ""
+*da.PageRegion A5/A5: ""
+*da.PageRegion A6/A6: ""
+*da.PageRegion B4/B4 (JIS): ""
+*da.PageRegion B5/B5 (JIS): ""
+*da.PageRegion Legal/Legal: ""
+*da.PageRegion Letter/Letter: ""
+*da.PageRegion HalfLetter/5,5x8,5: ""
+*da.PageRegion 11x17/11x17: ""
+*da.PageRegion Executive/Executive: ""
+*da.PageRegion F/8x13: ""
+*da.PageRegion Folio/8,25x13: ""
+*da.PageRegion FanFoldGermanLegal/8,5x13: ""
+*da.PageRegion A3.FullBleed/A3 (Fuldt tryk): ""
+*da.PageRegion A4.FullBleed/A4 (Fuldt tryk): ""
+*da.PageRegion A5.FullBleed/A5 (Fuldt tryk): ""
+*da.PageRegion A6.FullBleed/A6 (Fuldt tryk): ""
+*da.PageRegion B4.FullBleed/B4 JIS (Fuldt tryk): ""
+*da.PageRegion B5.FullBleed/B5 JIS (Fuldt tryk): ""
+*da.PageRegion Legal.FullBleed/Legal (Fuldt tryk): ""
+*da.PageRegion Letter.FullBleed/Letter (Fuldt tryk): ""
+*da.PageRegion HalfLetter.FullBleed/5,5x8,5 (Fuldt tryk): ""
+*da.PageRegion 11x17.FullBleed/11x17 (Fuldt tryk): ""
+*da.PageRegion Executive.FullBleed/Executive (Fuldt tryk): ""
+*da.PageRegion F.FullBleed/8x13 (Fuldt tryk): ""
+*da.PageRegion Folio.FullBleed/8,25x13 (Fuldt tryk): ""
+*da.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (Fuldt tryk): ""
+*da.Translation InputSlot/Media Source: ""
+*da.InputSlot MultiTray/Bypassbakke: ""
+*da.InputSlot 1Tray/Kassette 1: ""
+*da.InputSlot 2Tray/Kassette 2: ""
+*da.InputSlot 3Tray/Kassette 3: ""
+*da.InputSlot 4Tray/Kassette 4: ""
+*da.InputSlot 5Tray/Elevatorkassette: ""
+*da.Translation Duplex/Duplex: ""
+*da.Duplex None/Fra: ""
+*da.Duplex DuplexNoTumble/Lang kant: ""
+*da.Duplex DuplexTumble/Kort kant: ""
+*da.Translation RICollate/SÃ¦tvis udskrivning: ""
+*da.RICollate False/Fra: ""
+*da.RICollate True/Til: ""
+*da.Translation RIPrintMode/Udskriftstilstand: ""
+*da.RIPrintMode 0rhit/Via: ""
+*da.RIPrintMode 1rhit/Kantforbedring: ""
+*da.RIPrintMode 5rhit/Tonerbesparelse 1: ""
+*da.RIPrintMode 4rhit/Tonerbesparelse 2: ""
+*da.Translation RPSDitherType/Dithering: ""
+*da.RPSDitherType Auto/Auto: ""
+*da.RPSDitherType Photo/Fotografisk: ""
+*da.RPSDitherType Letter/Tekst: ""
+*da.RPSDitherType User/Brugerindstilling: ""
+*da.Translation Rimagesm/Billedjustering: ""
+*da.Rimagesm Off/Fra: ""
+*da.Rimagesm On/Til: ""
+*da.Rimagesm Auto/Auto: ""
+*da.Rimagesm 90ppi/Mindre end 90 ppi: ""
+*da.Rimagesm 150ppi/Mindre end 150 ppi: ""
+*da.Rimagesm 200ppi/Mindre end 200 ppi: ""
+*da.Rimagesm 300ppi/Mindre end 300 ppi: ""
+*da.Translation MediaType/Papirtype: ""
+*da.MediaType Auto/Almindeligt/Genbrugs: ""
+*da.MediaType Plain/Almindeligt: ""
+*da.MediaType Recycled/Genbrugs: ""
+*da.MediaType Special/Specielt: ""
+*da.MediaType Colored/Farve: ""
+*da.MediaType Letterhead/Brevhoved: ""
+*da.MediaType Preprinted/Fortrykt: ""
+*da.MediaType Prepunched/Hullet: ""
+*da.MediaType Labels/Labels: ""
+*da.MediaType Bond/Skrivemaskinepapir: ""
+*da.MediaType Cardstock/Indekskort: ""
+*da.MediaType OHP/Transparent: ""
+*da.MediaType Thick/Kraftigt: ""
+*da.MediaType None/Ingen: ""
+*da.Translation OutputBin/Destination: ""
+*da.OutputBin Default/Printerstandard: ""
+*da.OutputBin Standard/Standardkassette: ""
+*da.OutputBin FinProof/Efterbehandler SR3040 - Ã¸verste bakke: ""
+*da.OutputBin FinShift/Efterbehandler SR3040 - offsetbakke: ""
+*da.Translation StapleLocation/HÃ¦ftning: ""
+*da.StapleLocation None/Fra: ""
+*da.StapleLocation UpperLeft/Ã˜verst til venstre: ""
+*da.StapleLocation UpperRight/Ã˜verst til hÃ¸jre: ""
+*da.StapleLocation LowerLeft/Nederst til venstre: ""
+*da.StapleLocation LowerRight/Nederst til hÃ¸jre: ""
+*da.StapleLocation LeftW/2 i venstre side: ""
+*da.StapleLocation RightW/2 i hÃ¸jre side: ""
+*da.StapleLocation UpperW/2 Ã¸verst: ""
+*da.StapleLocation LowerW/2 nederst: ""
+*da.Translation RIPunch/Hulning: ""
+*da.RIPunch None/Fra: ""
+*da.RIPunch Left2/2 i venstre side: ""
+*da.RIPunch Left3/3 i venstre side: ""
+*da.RIPunch Left4/4 i venstre side: ""
+*da.RIPunch Right2/2 i hÃ¸jre side: ""
+*da.RIPunch Right3/3 i hÃ¸jre side: ""
+*da.RIPunch Right4/4 i hÃ¸jre side: ""
+*da.RIPunch Upper2/2 Ã¸verst: ""
+*da.RIPunch Upper3/3 Ã¸verst: ""
+*da.RIPunch Upper4/4 Ã¸verst: ""
+*da.RIPunch Lower2/2 nederst: ""
+*da.RIPunch Lower3/3 nederst: ""
+*da.RIPunch Lower4/4 nederst: ""
+*da.Translation RIOrientOvr/TilsidesÃ¦t retning: ""
+*da.RIOrientOvr Off/Fra: ""
+*da.RIOrientOvr Landscape/Liggende: ""
+*da.RIOrientOvr Portrait/StÃ¥ende: ""
+*% German localization
+*de.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*de.Translation InstallableOptions/Installierbare Optionen: ""
+*de.Translation Option1/Untere Magazine: ""
+*de.Option1 False/Nicht installiert: ""
+*de.Option1 True/Installiert: ""
+*de.Translation Option2/GroÃŸraummagazin: ""
+*de.Option2 False/Nicht installiert: ""
+*de.Option2 True/Installiert: ""
+*de.Translation Option30/Finisher SR3040: ""
+*de.Option30 False/Nicht installiert: ""
+*de.Option30 True/Installiert: ""
+*de.Translation General/General: ""
+*de.Translation RIPaperPolicy/An Papier anpassen: ""
+*de.RIPaperPolicy PromptUser/Entscheidung durch Benutzer: ""
+*de.RIPaperPolicy NearestSizeAdjust/NÃ¤chstliegendes Format und Skalierung: ""
+*de.RIPaperPolicy NearestSizeNoAdjust/NÃ¤chstliegendes Format und Zuschneidung: ""
+*de.Translation PageSize/Media Size: ""
+*de.PageSize A3/A3: ""
+*de.PageSize A4/A4: ""
+*de.PageSize A5/A5: ""
+*de.PageSize A6/A6: ""
+*de.PageSize B4/B4 (JIS): ""
+*de.PageSize B5/B5 (JIS): ""
+*de.PageSize Legal/Legal: ""
+*de.PageSize Letter/Letter: ""
+*de.PageSize HalfLetter/5,5x8,5: ""
+*de.PageSize 11x17/11x17: ""
+*de.PageSize Executive/Executive: ""
+*de.PageSize F/8x13: ""
+*de.PageSize Folio/8,25x13: ""
+*de.PageSize FanFoldGermanLegal/8,5x13: ""
+*de.PageSize A3.FullBleed/A3 (Randlos): ""
+*de.PageSize A4.FullBleed/A4 (Randlos): ""
+*de.PageSize A5.FullBleed/A5 (Randlos): ""
+*de.PageSize A6.FullBleed/A6 (Randlos): ""
+*de.PageSize B4.FullBleed/B4 JIS (Randlos): ""
+*de.PageSize B5.FullBleed/B5 JIS (Randlos): ""
+*de.PageSize Legal.FullBleed/Legal (Randlos): ""
+*de.PageSize Letter.FullBleed/Letter (Randlos): ""
+*de.PageSize HalfLetter.FullBleed/5,5x8,5 (Randlos): ""
+*de.PageSize 11x17.FullBleed/11x17 (Randlos): ""
+*de.PageSize Executive.FullBleed/Executive (Randlos): ""
+*de.PageSize F.FullBleed/8x13 (Randlos): ""
+*de.PageSize Folio.FullBleed/8,25x13 (Randlos): ""
+*de.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (Randlos): ""
+*de.PageSize Custom/Custom: ""
+*de.Translation PageRegion/PageRegion: ""
+*de.PageRegion A3/A3: ""
+*de.PageRegion A4/A4: ""
+*de.PageRegion A5/A5: ""
+*de.PageRegion A6/A6: ""
+*de.PageRegion B4/B4 (JIS): ""
+*de.PageRegion B5/B5 (JIS): ""
+*de.PageRegion Legal/Legal: ""
+*de.PageRegion Letter/Letter: ""
+*de.PageRegion HalfLetter/5,5x8,5: ""
+*de.PageRegion 11x17/11x17: ""
+*de.PageRegion Executive/Executive: ""
+*de.PageRegion F/8x13: ""
+*de.PageRegion Folio/8,25x13: ""
+*de.PageRegion FanFoldGermanLegal/8,5x13: ""
+*de.PageRegion A3.FullBleed/A3 (Randlos): ""
+*de.PageRegion A4.FullBleed/A4 (Randlos): ""
+*de.PageRegion A5.FullBleed/A5 (Randlos): ""
+*de.PageRegion A6.FullBleed/A6 (Randlos): ""
+*de.PageRegion B4.FullBleed/B4 JIS (Randlos): ""
+*de.PageRegion B5.FullBleed/B5 JIS (Randlos): ""
+*de.PageRegion Legal.FullBleed/Legal (Randlos): ""
+*de.PageRegion Letter.FullBleed/Letter (Randlos): ""
+*de.PageRegion HalfLetter.FullBleed/5,5x8,5 (Randlos): ""
+*de.PageRegion 11x17.FullBleed/11x17 (Randlos): ""
+*de.PageRegion Executive.FullBleed/Executive (Randlos): ""
+*de.PageRegion F.FullBleed/8x13 (Randlos): ""
+*de.PageRegion Folio.FullBleed/8,25x13 (Randlos): ""
+*de.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (Randlos): ""
+*de.Translation InputSlot/Media Source: ""
+*de.InputSlot MultiTray/Bypass: ""
+*de.InputSlot 1Tray/Magazin 1: ""
+*de.InputSlot 2Tray/Magazin 2: ""
+*de.InputSlot 3Tray/Magazin 3: ""
+*de.InputSlot 4Tray/Magazin 4: ""
+*de.InputSlot 5Tray/GroÃŸraummagazin: ""
+*de.Translation Duplex/Duplex: ""
+*de.Duplex None/Aus: ""
+*de.Duplex DuplexNoTumble/Lange Kante: ""
+*de.Duplex DuplexTumble/Kurze Kante: ""
+*de.Translation RICollate/Sortieren: ""
+*de.RICollate False/Aus: ""
+*de.RICollate True/Ein: ""
+*de.Translation RIPrintMode/Druckmodus: ""
+*de.RIPrintMode 0rhit/Durch: ""
+*de.RIPrintMode 1rhit/KantenglÃ¤ttung: ""
+*de.RIPrintMode 5rhit/Tonersparmodus 1: ""
+*de.RIPrintMode 4rhit/Tonersparmodus 2: ""
+*de.Translation RPSDitherType/Dithering: ""
+*de.RPSDitherType Auto/Automatisch: ""
+*de.RPSDitherType Photo/Foto: ""
+*de.RPSDitherType Letter/Text: ""
+*de.RPSDitherType User/Benutzereinstellung: ""
+*de.Translation Rimagesm/BildglÃ¤ttung: ""
+*de.Rimagesm Off/Aus: ""
+*de.Rimagesm On/Ein: ""
+*de.Rimagesm Auto/Automatisch: ""
+*de.Rimagesm 90ppi/Weniger als 90 ppi: ""
+*de.Rimagesm 150ppi/Weniger als 150 ppi: ""
+*de.Rimagesm 200ppi/Weniger als 200 ppi: ""
+*de.Rimagesm 300ppi/Weniger als 300 ppi: ""
+*de.Translation MediaType/Papiertyp: ""
+*de.MediaType Auto/Normal/Recycling: ""
+*de.MediaType Plain/Normal: ""
+*de.MediaType Recycled/Recycling: ""
+*de.MediaType Special/Spezial: ""
+*de.MediaType Colored/Farbe: ""
+*de.MediaType Letterhead/Briefbogen: ""
+*de.MediaType Preprinted/Bedruckt: ""
+*de.MediaType Prepunched/Vorgelocht: ""
+*de.MediaType Labels/Etiketten: ""
+*de.MediaType Bond/Bondpapier: ""
+*de.MediaType Cardstock/Registerkarten: ""
+*de.MediaType OHP/Folie: ""
+*de.MediaType Thick/Dick: ""
+*de.MediaType None/Kein: ""
+*de.Translation OutputBin/Ausgabe: ""
+*de.OutputBin Default/Druckerstandard: ""
+*de.OutputBin Standard/Standardablage: ""
+*de.OutputBin FinProof/Finisher SR3040 Obere Ablage: ""
+*de.OutputBin FinShift/Finisher SR3040 Versatzbalage: ""
+*de.Translation StapleLocation/Heften: ""
+*de.StapleLocation None/Aus: ""
+*de.StapleLocation UpperLeft/Oben links: ""
+*de.StapleLocation UpperRight/Oben rechts: ""
+*de.StapleLocation LowerLeft/Unten links: ""
+*de.StapleLocation LowerRight/Unten rechts: ""
+*de.StapleLocation LeftW/2 links: ""
+*de.StapleLocation RightW/2 rechts: ""
+*de.StapleLocation UpperW/2 oben: ""
+*de.StapleLocation LowerW/2 unten: ""
+*de.Translation RIPunch/Lochen: ""
+*de.RIPunch None/Aus: ""
+*de.RIPunch Left2/2 links: ""
+*de.RIPunch Left3/3 links: ""
+*de.RIPunch Left4/4 links: ""
+*de.RIPunch Right2/2 rechts: ""
+*de.RIPunch Right3/3 rechts: ""
+*de.RIPunch Right4/4 rechts: ""
+*de.RIPunch Upper2/2 oben: ""
+*de.RIPunch Upper3/3 oben: ""
+*de.RIPunch Upper4/4 oben: ""
+*de.RIPunch Lower2/2 unten: ""
+*de.RIPunch Lower3/3 unten: ""
+*de.RIPunch Lower4/4 unten: ""
+*de.Translation RIOrientOvr/Aufhebung der Ausrichtung: ""
+*de.RIOrientOvr Off/Aus: ""
+*de.RIOrientOvr Landscape/Querformat: ""
+*de.RIOrientOvr Portrait/Hochformat: ""
+*% Spanish localization
+*es.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*es.Translation InstallableOptions/Opciones instalables: ""
+*es.Translation Option1/Bandejas de papel inferiores: ""
+*es.Option1 False/No instalada: ""
+*es.Option1 True/Instalada: ""
+*es.Translation Option2/Band. gran capacidad: ""
+*es.Option2 False/No instalada: ""
+*es.Option2 True/Instalada: ""
+*es.Translation Option30/Finisher SR3040: ""
+*es.Option30 False/No instalada: ""
+*es.Option30 True/Instalada: ""
+*es.Translation General/General: ""
+*es.Translation RIPaperPolicy/Ajustar a papel: ""
+*es.RIPaperPolicy PromptUser/Pedir el nombre de usuario: ""
+*es.RIPaperPolicy NearestSizeAdjust/TamaÃ±o y escala mÃ¡s prÃ³ximos: ""
+*es.RIPaperPolicy NearestSizeNoAdjust/Recortar al formato mÃ¡s prÃ³ximo: ""
+*es.Translation PageSize/Media Size: ""
+*es.PageSize A3/A3: ""
+*es.PageSize A4/A4: ""
+*es.PageSize A5/A5: ""
+*es.PageSize A6/A6: ""
+*es.PageSize B4/B4 (JIS): ""
+*es.PageSize B5/B5 (JIS): ""
+*es.PageSize Legal/Legal: ""
+*es.PageSize Letter/Letter: ""
+*es.PageSize HalfLetter/5,5x8,5: ""
+*es.PageSize 11x17/11x17: ""
+*es.PageSize Executive/Executive: ""
+*es.PageSize F/8x13: ""
+*es.PageSize Folio/8,25x13: ""
+*es.PageSize FanFoldGermanLegal/8,5x13: ""
+*es.PageSize A3.FullBleed/A3 (A sangre): ""
+*es.PageSize A4.FullBleed/A4 (A sangre): ""
+*es.PageSize A5.FullBleed/A5 (A sangre): ""
+*es.PageSize A6.FullBleed/A6 (A sangre): ""
+*es.PageSize B4.FullBleed/B4 JIS (A sangre): ""
+*es.PageSize B5.FullBleed/B5 JIS (A sangre): ""
+*es.PageSize Legal.FullBleed/Legal (A sangre): ""
+*es.PageSize Letter.FullBleed/Letter (A sangre): ""
+*es.PageSize HalfLetter.FullBleed/5,5x8,5 (A sangre): ""
+*es.PageSize 11x17.FullBleed/11x17 (A sangre): ""
+*es.PageSize Executive.FullBleed/Executive (A sangre): ""
+*es.PageSize F.FullBleed/8x13 (A sangre): ""
+*es.PageSize Folio.FullBleed/8,25x13 (A sangre): ""
+*es.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (A sangre): ""
+*es.PageSize Custom/Custom: ""
+*es.Translation PageRegion/PageRegion: ""
+*es.PageRegion A3/A3: ""
+*es.PageRegion A4/A4: ""
+*es.PageRegion A5/A5: ""
+*es.PageRegion A6/A6: ""
+*es.PageRegion B4/B4 (JIS): ""
+*es.PageRegion B5/B5 (JIS): ""
+*es.PageRegion Legal/Legal: ""
+*es.PageRegion Letter/Letter: ""
+*es.PageRegion HalfLetter/5,5x8,5: ""
+*es.PageRegion 11x17/11x17: ""
+*es.PageRegion Executive/Executive: ""
+*es.PageRegion F/8x13: ""
+*es.PageRegion Folio/8,25x13: ""
+*es.PageRegion FanFoldGermanLegal/8,5x13: ""
+*es.PageRegion A3.FullBleed/A3 (A sangre): ""
+*es.PageRegion A4.FullBleed/A4 (A sangre): ""
+*es.PageRegion A5.FullBleed/A5 (A sangre): ""
+*es.PageRegion A6.FullBleed/A6 (A sangre): ""
+*es.PageRegion B4.FullBleed/B4 JIS (A sangre): ""
+*es.PageRegion B5.FullBleed/B5 JIS (A sangre): ""
+*es.PageRegion Legal.FullBleed/Legal (A sangre): ""
+*es.PageRegion Letter.FullBleed/Letter (A sangre): ""
+*es.PageRegion HalfLetter.FullBleed/5,5x8,5 (A sangre): ""
+*es.PageRegion 11x17.FullBleed/11x17 (A sangre): ""
+*es.PageRegion Executive.FullBleed/Executive (A sangre): ""
+*es.PageRegion F.FullBleed/8x13 (A sangre): ""
+*es.PageRegion Folio.FullBleed/8,25x13 (A sangre): ""
+*es.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (A sangre): ""
+*es.Translation InputSlot/Media Source: ""
+*es.InputSlot MultiTray/Bandeja bypass: ""
+*es.InputSlot 1Tray/Bandeja 1: ""
+*es.InputSlot 2Tray/Bandeja 2: ""
+*es.InputSlot 3Tray/Bandeja 3: ""
+*es.InputSlot 4Tray/Bandeja 4: ""
+*es.InputSlot 5Tray/Band. gran capacidad: ""
+*es.Translation Duplex/DÃºplex: ""
+*es.Duplex None/Desact.: ""
+*es.Duplex DuplexNoTumble/Borde largo: ""
+*es.Duplex DuplexTumble/Borde corto: ""
+*es.Translation RICollate/Clasificado: ""
+*es.RICollate False/Desact.: ""
+*es.RICollate True/Activ.: ""
+*es.Translation RIPrintMode/Modo impr.: ""
+*es.RIPrintMode 0rhit/Normal: ""
+*es.RIPrintMode 1rhit/Suavizado de bordes: ""
+*es.RIPrintMode 5rhit/Ahorro de tÃ³ner 1: ""
+*es.RIPrintMode 4rhit/Ahorro de tÃ³ner 2: ""
+*es.Translation RPSDitherType/Difuminado: ""
+*es.RPSDitherType Auto/AutomÃ¡tico: ""
+*es.RPSDitherType Photo/FotogrÃ¡fico: ""
+*es.RPSDitherType Letter/Texto: ""
+*es.RPSDitherType User/Ajuste de usuario: ""
+*es.Translation Rimagesm/Suavizado de imagen: ""
+*es.Rimagesm Off/Desact.: ""
+*es.Rimagesm On/Activ.: ""
+*es.Rimagesm Auto/AutomÃ¡tico: ""
+*es.Rimagesm 90ppi/Menos de 90 ppi: ""
+*es.Rimagesm 150ppi/Menos de 150 ppi: ""
+*es.Rimagesm 200ppi/Menos de 200 ppi: ""
+*es.Rimagesm 300ppi/Menos de 300 ppi: ""
+*es.Translation MediaType/Tipo de papel: ""
+*es.MediaType Auto/Normal/Reciclado: ""
+*es.MediaType Plain/Normal: ""
+*es.MediaType Recycled/Reciclado: ""
+*es.MediaType Special/Especial: ""
+*es.MediaType Colored/Color: ""
+*es.MediaType Letterhead/Membrete: ""
+*es.MediaType Preprinted/Preimpreso: ""
+*es.MediaType Prepunched/Preperforado: ""
+*es.MediaType Labels/Etiquetas: ""
+*es.MediaType Bond/Papel de carta: ""
+*es.MediaType Cardstock/Tarjetas: ""
+*es.MediaType OHP/Transparencia: ""
+*es.MediaType Thick/Grueso: ""
+*es.MediaType None/Ninguno: ""
+*es.Translation OutputBin/Destino: ""
+*es.OutputBin Default/Impresora por defecto: ""
+*es.OutputBin Standard/Bandeja estÃ¡ndar: ""
+*es.OutputBin FinProof/Bandeja superior finisher SR3040: ""
+*es.OutputBin FinShift/Bandeja desplazamiento finisher SR3040: ""
+*es.Translation StapleLocation/Grapar: ""
+*es.StapleLocation None/Desact.: ""
+*es.StapleLocation UpperLeft/Superior izquierda: ""
+*es.StapleLocation UpperRight/Superior derecha: ""
+*es.StapleLocation LowerLeft/Inferior izqda.: ""
+*es.StapleLocation LowerRight/Inferior dcha.: ""
+*es.StapleLocation LeftW/2 a la izquierda: ""
+*es.StapleLocation RightW/2 a la derecha: ""
+*es.StapleLocation UpperW/2 arriba: ""
+*es.StapleLocation LowerW/2 inferior: ""
+*es.Translation RIPunch/Perforar: ""
+*es.RIPunch None/Desact.: ""
+*es.RIPunch Left2/2 a la izquierda: ""
+*es.RIPunch Left3/3 a la izquierda: ""
+*es.RIPunch Left4/4 a la izquierda: ""
+*es.RIPunch Right2/2 a la derecha: ""
+*es.RIPunch Right3/3 a la derecha: ""
+*es.RIPunch Right4/4 a la derecha: ""
+*es.RIPunch Upper2/2 arriba: ""
+*es.RIPunch Upper3/3 arriba: ""
+*es.RIPunch Upper4/4 arriba: ""
+*es.RIPunch Lower2/2 inferior: ""
+*es.RIPunch Lower3/3 inferior: ""
+*es.RIPunch Lower4/4 inferior: ""
+*es.Translation RIOrientOvr/Anular orientaciÃ³n: ""
+*es.RIOrientOvr Off/Desact.: ""
+*es.RIOrientOvr Landscape/Horizontal: ""
+*es.RIOrientOvr Portrait/Vertical: ""
+*% French localization
+*fr.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*fr.Translation InstallableOptions/Options installables: ""
+*fr.Translation Option1/Magasins papier infÃ©rieurs: ""
+*fr.Option1 False/Non installÃ©: ""
+*fr.Option1 True/InstallÃ©: ""
+*fr.Translation Option2/Magasin Grande CapacitÃ©: ""
+*fr.Option2 False/Non installÃ©: ""
+*fr.Option2 True/InstallÃ©: ""
+*fr.Translation Option30/Finisseur SR3040: ""
+*fr.Option30 False/Non installÃ©: ""
+*fr.Option30 True/InstallÃ©: ""
+*fr.Translation General/General: ""
+*fr.Translation RIPaperPolicy/Ajuster au papier: ""
+*fr.RIPaperPolicy PromptUser/Demander Ã  l'utilisateur: ""
+*fr.RIPaperPolicy NearestSizeAdjust/Format et Ã©chelle les plus proches: ""
+*fr.RIPaperPolicy NearestSizeNoAdjust/Format et coupe les plus proches: ""
+*fr.Translation PageSize/Media Size: ""
+*fr.PageSize A3/A3: ""
+*fr.PageSize A4/A4: ""
+*fr.PageSize A5/A5: ""
+*fr.PageSize A6/A6: ""
+*fr.PageSize B4/B4 (JIS): ""
+*fr.PageSize B5/B5 (JIS): ""
+*fr.PageSize Legal/Legal: ""
+*fr.PageSize Letter/Letter: ""
+*fr.PageSize HalfLetter/5,5x8,5: ""
+*fr.PageSize 11x17/11x17: ""
+*fr.PageSize Executive/Executive: ""
+*fr.PageSize F/8x13: ""
+*fr.PageSize Folio/8,25x13: ""
+*fr.PageSize FanFoldGermanLegal/8,5x13: ""
+*fr.PageSize A3.FullBleed/A3 (Pleine page): ""
+*fr.PageSize A4.FullBleed/A4 (Pleine page): ""
+*fr.PageSize A5.FullBleed/A5 (Pleine page): ""
+*fr.PageSize A6.FullBleed/A6 (Pleine page): ""
+*fr.PageSize B4.FullBleed/B4 JIS (Pleine page): ""
+*fr.PageSize B5.FullBleed/B5 JIS (Pleine page): ""
+*fr.PageSize Legal.FullBleed/Legal (Pleine page): ""
+*fr.PageSize Letter.FullBleed/Letter (Pleine page): ""
+*fr.PageSize HalfLetter.FullBleed/5,5x8,5 (Pleine page): ""
+*fr.PageSize 11x17.FullBleed/11x17 (Pleine page): ""
+*fr.PageSize Executive.FullBleed/Executive (Pleine page): ""
+*fr.PageSize F.FullBleed/8x13 (Pleine page): ""
+*fr.PageSize Folio.FullBleed/8,25x13 (Pleine page): ""
+*fr.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (Pleine page): ""
+*fr.PageSize Custom/Custom: ""
+*fr.Translation PageRegion/PageRegion: ""
+*fr.PageRegion A3/A3: ""
+*fr.PageRegion A4/A4: ""
+*fr.PageRegion A5/A5: ""
+*fr.PageRegion A6/A6: ""
+*fr.PageRegion B4/B4 (JIS): ""
+*fr.PageRegion B5/B5 (JIS): ""
+*fr.PageRegion Legal/Legal: ""
+*fr.PageRegion Letter/Letter: ""
+*fr.PageRegion HalfLetter/5,5x8,5: ""
+*fr.PageRegion 11x17/11x17: ""
+*fr.PageRegion Executive/Executive: ""
+*fr.PageRegion F/8x13: ""
+*fr.PageRegion Folio/8,25x13: ""
+*fr.PageRegion FanFoldGermanLegal/8,5x13: ""
+*fr.PageRegion A3.FullBleed/A3 (Pleine page): ""
+*fr.PageRegion A4.FullBleed/A4 (Pleine page): ""
+*fr.PageRegion A5.FullBleed/A5 (Pleine page): ""
+*fr.PageRegion A6.FullBleed/A6 (Pleine page): ""
+*fr.PageRegion B4.FullBleed/B4 JIS (Pleine page): ""
+*fr.PageRegion B5.FullBleed/B5 JIS (Pleine page): ""
+*fr.PageRegion Legal.FullBleed/Legal (Pleine page): ""
+*fr.PageRegion Letter.FullBleed/Letter (Pleine page): ""
+*fr.PageRegion HalfLetter.FullBleed/5,5x8,5 (Pleine page): ""
+*fr.PageRegion 11x17.FullBleed/11x17 (Pleine page): ""
+*fr.PageRegion Executive.FullBleed/Executive (Pleine page): ""
+*fr.PageRegion F.FullBleed/8x13 (Pleine page): ""
+*fr.PageRegion Folio.FullBleed/8,25x13 (Pleine page): ""
+*fr.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (Pleine page): ""
+*fr.Translation InputSlot/Media Source: ""
+*fr.InputSlot MultiTray/Bypass: ""
+*fr.InputSlot 1Tray/Magasin 1: ""
+*fr.InputSlot 2Tray/Magasin 2: ""
+*fr.InputSlot 3Tray/Magasin 3: ""
+*fr.InputSlot 4Tray/Magasin 4: ""
+*fr.InputSlot 5Tray/Magasin Grande CapacitÃ©: ""
+*fr.Translation Duplex/Recto/Verso: ""
+*fr.Duplex None/OFF: ""
+*fr.Duplex DuplexNoTumble/Bord Long: ""
+*fr.Duplex DuplexTumble/Bord Court: ""
+*fr.Translation RICollate/Assembler: ""
+*fr.RICollate False/OFF: ""
+*fr.RICollate True/ON: ""
+*fr.Translation RIPrintMode/Mode impression: ""
+*fr.RIPrintMode 0rhit/A travers: ""
+*fr.RIPrintMode 1rhit/Bords uniformes: ""
+*fr.RIPrintMode 5rhit/Ã‰conomie de toner 1: ""
+*fr.RIPrintMode 4rhit/Ã‰conomie de toner 2: ""
+*fr.Translation RPSDitherType/Type de Trame: ""
+*fr.RPSDitherType Auto/Auto: ""
+*fr.RPSDitherType Photo/Photographique: ""
+*fr.RPSDitherType Letter/Texte: ""
+*fr.RPSDitherType User/ParamÃ¨tre utilisateur: ""
+*fr.Translation Rimagesm/Lissage de l'image: ""
+*fr.Rimagesm Off/OFF: ""
+*fr.Rimagesm On/ON: ""
+*fr.Rimagesm Auto/Auto: ""
+*fr.Rimagesm 90ppi/Moins de 90 ppi: ""
+*fr.Rimagesm 150ppi/Moins de 150 ppi: ""
+*fr.Rimagesm 200ppi/Moins de 200 ppi: ""
+*fr.Rimagesm 300ppi/Moins de 300 ppi: ""
+*fr.Translation MediaType/Type papier: ""
+*fr.MediaType Auto/Normal/RecyclÃ©: ""
+*fr.MediaType Plain/Normal: ""
+*fr.MediaType Recycled/RecyclÃ©: ""
+*fr.MediaType Special/SpÃ©cial: ""
+*fr.MediaType Colored/Couleur: ""
+*fr.MediaType Letterhead/Papier Ã  en-tÃªte: ""
+*fr.MediaType Preprinted/PrÃ©imprimÃ©: ""
+*fr.MediaType Prepunched/PerforÃ©: ""
+*fr.MediaType Labels/Ã‰tiquettes: ""
+*fr.MediaType Bond/Papier Bond: ""
+*fr.MediaType Cardstock/Papier cartonnÃ©: ""
+*fr.MediaType OHP/Transparents: ""
+*fr.MediaType Thick/Ã‰pais: ""
+*fr.MediaType None/Aucun: ""
+*fr.Translation OutputBin/Destinataire: ""
+*fr.OutputBin Default/Imprimante par dÃ©faut: ""
+*fr.OutputBin Standard/RÃ©ceptacle standard: ""
+*fr.OutputBin FinProof/RÃ©ceptacle supÃ©rieur du Finisseur SR3040: ""
+*fr.OutputBin FinShift/RÃ©ceptacle de tri dÃ©calÃ© du Finisseur SR3040: ""
+*fr.Translation StapleLocation/Agrafer: ""
+*fr.StapleLocation None/OFF: ""
+*fr.StapleLocation UpperLeft/Haut gauche: ""
+*fr.StapleLocation UpperRight/Haut droite: ""
+*fr.StapleLocation LowerLeft/Bas gauche: ""
+*fr.StapleLocation LowerRight/Bas droite: ""
+*fr.StapleLocation LeftW/2 Ã  gauche: ""
+*fr.StapleLocation RightW/2 Ã  droite: ""
+*fr.StapleLocation UpperW/2 en haut: ""
+*fr.StapleLocation LowerW/2 en bas: ""
+*fr.Translation RIPunch/Perforer: ""
+*fr.RIPunch None/OFF: ""
+*fr.RIPunch Left2/2 Ã  gauche: ""
+*fr.RIPunch Left3/3 Ã  gauche: ""
+*fr.RIPunch Left4/4 Ã  gauche: ""
+*fr.RIPunch Right2/2 Ã  droite: ""
+*fr.RIPunch Right3/3 Ã  droite: ""
+*fr.RIPunch Right4/4 Ã  droite: ""
+*fr.RIPunch Upper2/2 en haut: ""
+*fr.RIPunch Upper3/3 en haut: ""
+*fr.RIPunch Upper4/4 en haut: ""
+*fr.RIPunch Lower2/2 en bas: ""
+*fr.RIPunch Lower3/3 en bas: ""
+*fr.RIPunch Lower4/4 en bas: ""
+*fr.Translation RIOrientOvr/Annuler orientation: ""
+*fr.RIOrientOvr Off/OFF: ""
+*fr.RIOrientOvr Landscape/Paysage: ""
+*fr.RIOrientOvr Portrait/Portrait: ""
+*% Italian localization
+*it.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*it.Translation InstallableOptions/Opzioni installabili: ""
+*it.Translation Option1/Vassoi carta inferiori: ""
+*it.Option1 False/Non installato: ""
+*it.Option1 True/Installato: ""
+*it.Translation Option2/Vassoio a grande capacitÃ : ""
+*it.Option2 False/Non installato: ""
+*it.Option2 True/Installato: ""
+*it.Translation Option30/Finisher SR3040: ""
+*it.Option30 False/Non installato: ""
+*it.Option30 True/Installato: ""
+*it.Translation General/General: ""
+*it.Translation RIPaperPolicy/Adatta alla carta: ""
+*it.RIPaperPolicy PromptUser/Notifica utente: ""
+*it.RIPaperPolicy NearestSizeAdjust/Formato e scala piÃ¹ vicini: ""
+*it.RIPaperPolicy NearestSizeNoAdjust/Formato e crocini di registro piÃ¹ vicini: ""
+*it.Translation PageSize/Media Size: ""
+*it.PageSize A3/A3: ""
+*it.PageSize A4/A4: ""
+*it.PageSize A5/A5: ""
+*it.PageSize A6/A6: ""
+*it.PageSize B4/B4 (JIS): ""
+*it.PageSize B5/B5 (JIS): ""
+*it.PageSize Legal/Legal: ""
+*it.PageSize Letter/Letter: ""
+*it.PageSize HalfLetter/5,5x8,6: ""
+*it.PageSize 11x17/11x17: ""
+*it.PageSize Executive/Executive: ""
+*it.PageSize F/8x13: ""
+*it.PageSize Folio/8,25x13: ""
+*it.PageSize FanFoldGermanLegal/8,5x13: ""
+*it.PageSize A3.FullBleed/A3 (Margini al vivo): ""
+*it.PageSize A4.FullBleed/A4 (Margini al vivo): ""
+*it.PageSize A5.FullBleed/A5 (Margini al vivo): ""
+*it.PageSize A6.FullBleed/A6 (Margini al vivo): ""
+*it.PageSize B4.FullBleed/B4 JIS (Margini al vivo): ""
+*it.PageSize B5.FullBleed/B5 JIS (Margini al vivo): ""
+*it.PageSize Legal.FullBleed/Legal (Margini al vivo): ""
+*it.PageSize Letter.FullBleed/Letter (Margini al vivo): ""
+*it.PageSize HalfLetter.FullBleed/5,5x8,5 (Margini al vivo): ""
+*it.PageSize 11x17.FullBleed/11x17 (Margini al vivo): ""
+*it.PageSize Executive.FullBleed/Executive (Margini al vivo): ""
+*it.PageSize F.FullBleed/8x13 (Margini al vivo): ""
+*it.PageSize Folio.FullBleed/8,25x13 (Margini al vivo): ""
+*it.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (Margini al vivo): ""
+*it.PageSize Custom/Custom: ""
+*it.Translation PageRegion/PageRegion: ""
+*it.PageRegion A3/A3: ""
+*it.PageRegion A4/A4: ""
+*it.PageRegion A5/A5: ""
+*it.PageRegion A6/A6: ""
+*it.PageRegion B4/B4 (JIS): ""
+*it.PageRegion B5/B5 (JIS): ""
+*it.PageRegion Legal/Legal: ""
+*it.PageRegion Letter/Letter: ""
+*it.PageRegion HalfLetter/5,5x8,6: ""
+*it.PageRegion 11x17/11x17: ""
+*it.PageRegion Executive/Executive: ""
+*it.PageRegion F/8x13: ""
+*it.PageRegion Folio/8,25x13: ""
+*it.PageRegion FanFoldGermanLegal/8,5x13: ""
+*it.PageRegion A3.FullBleed/A3 (Margini al vivo): ""
+*it.PageRegion A4.FullBleed/A4 (Margini al vivo): ""
+*it.PageRegion A5.FullBleed/A5 (Margini al vivo): ""
+*it.PageRegion A6.FullBleed/A6 (Margini al vivo): ""
+*it.PageRegion B4.FullBleed/B4 JIS (Margini al vivo): ""
+*it.PageRegion B5.FullBleed/B5 JIS (Margini al vivo): ""
+*it.PageRegion Legal.FullBleed/Legal (Margini al vivo): ""
+*it.PageRegion Letter.FullBleed/Letter (Margini al vivo): ""
+*it.PageRegion HalfLetter.FullBleed/5,5x8,5 (Margini al vivo): ""
+*it.PageRegion 11x17.FullBleed/11x17 (Margini al vivo): ""
+*it.PageRegion Executive.FullBleed/Executive (Margini al vivo): ""
+*it.PageRegion F.FullBleed/8x13 (Margini al vivo): ""
+*it.PageRegion Folio.FullBleed/8,25x13 (Margini al vivo): ""
+*it.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (Margini al vivo): ""
+*it.Translation InputSlot/Media Source: ""
+*it.InputSlot MultiTray/Vassoio bypass: ""
+*it.InputSlot 1Tray/Vassoio 1: ""
+*it.InputSlot 2Tray/Vassoio 2: ""
+*it.InputSlot 3Tray/Vassoio 3: ""
+*it.InputSlot 4Tray/Vassoio 4: ""
+*it.InputSlot 5Tray/Vassoio a grande capacitÃ : ""
+*it.Translation Duplex/Fronte-retro: ""
+*it.Duplex None/Disattivo: ""
+*it.Duplex DuplexNoTumble/Margine lungo: ""
+*it.Duplex DuplexTumble/Margine corto: ""
+*it.Translation RICollate/Fascicolazione: ""
+*it.RICollate False/Disattivo: ""
+*it.RICollate True/Attivo: ""
+*it.Translation RIPrintMode/ModalitÃ  di stampa: ""
+*it.RIPrintMode 0rhit/Passa senza elaborare: ""
+*it.RIPrintMode 1rhit/Rifinitura bordi: ""
+*it.RIPrintMode 5rhit/Risparmio toner 1: ""
+*it.RIPrintMode 4rhit/Risparmio toner 2: ""
+*it.Translation RPSDitherType/Retinatura: ""
+*it.RPSDitherType Auto/Automatico: ""
+*it.RPSDitherType Photo/Fotografica: ""
+*it.RPSDitherType Letter/Testo: ""
+*it.RPSDitherType User/Impostazioni utente: ""
+*it.Translation Rimagesm/Sfumatura immagine: ""
+*it.Rimagesm Off/Disattivo: ""
+*it.Rimagesm On/Attivo: ""
+*it.Rimagesm Auto/Automatico: ""
+*it.Rimagesm 90ppi/Inferiore a 90 ppi: ""
+*it.Rimagesm 150ppi/Inferiore a 150 ppi: ""
+*it.Rimagesm 200ppi/Inferiore a 200 ppi: ""
+*it.Rimagesm 300ppi/Inferiore a 300 ppi: ""
+*it.Translation MediaType/Tipo carta: ""
+*it.MediaType Auto/Comune/Riciclata: ""
+*it.MediaType Plain/Comune: ""
+*it.MediaType Recycled/Riciclata: ""
+*it.MediaType Special/Speciale: ""
+*it.MediaType Colored/Colore: ""
+*it.MediaType Letterhead/Carta intestata: ""
+*it.MediaType Preprinted/Prestampata: ""
+*it.MediaType Prepunched/Preforata: ""
+*it.MediaType Labels/Etichette: ""
+*it.MediaType Bond/Carta di alta qualitÃ : ""
+*it.MediaType Cardstock/Cartoncino: ""
+*it.MediaType OHP/Lucidi: ""
+*it.MediaType Thick/Spessa: ""
+*it.MediaType None/Nessuno: ""
+*it.Translation OutputBin/Destinazione: ""
+*it.OutputBin Default/Impostazioni predefinite stampante: ""
+*it.OutputBin Standard/Vassoio predefinito: ""
+*it.OutputBin FinProof/Vassoio superiore finisher SR3040: ""
+*it.OutputBin FinShift/Vassoio basculante finisher SR3040: ""
+*it.Translation StapleLocation/Pinzatura: ""
+*it.StapleLocation None/Disattivo: ""
+*it.StapleLocation UpperLeft/In alto a sinistra: ""
+*it.StapleLocation UpperRight/In alto a destra: ""
+*it.StapleLocation LowerLeft/In basso a sx: ""
+*it.StapleLocation LowerRight/In basso a dx: ""
+*it.StapleLocation LeftW/2 a sinistra: ""
+*it.StapleLocation RightW/2 a destra: ""
+*it.StapleLocation UpperW/2 in alto: ""
+*it.StapleLocation LowerW/2 in basso: ""
+*it.Translation RIPunch/Perforazione: ""
+*it.RIPunch None/Disattivo: ""
+*it.RIPunch Left2/2 a sinistra: ""
+*it.RIPunch Left3/3 a sinistra: ""
+*it.RIPunch Left4/4 a sinistra: ""
+*it.RIPunch Right2/2 a destra: ""
+*it.RIPunch Right3/3 a destra: ""
+*it.RIPunch Right4/4 a destra: ""
+*it.RIPunch Upper2/2 in alto: ""
+*it.RIPunch Upper3/3 in alto: ""
+*it.RIPunch Upper4/4 in alto: ""
+*it.RIPunch Lower2/2 in basso: ""
+*it.RIPunch Lower3/3 in basso: ""
+*it.RIPunch Lower4/4 in basso: ""
+*it.Translation RIOrientOvr/Ignora orientamento: ""
+*it.RIOrientOvr Off/Disattivo: ""
+*it.RIOrientOvr Landscape/Orizzontale: ""
+*it.RIOrientOvr Portrait/Verticale: ""
+*% Dutch localization
+*nl.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*nl.Translation InstallableOptions/Installeerbare opties: ""
+*nl.Translation Option1/Onderste papierladen: ""
+*nl.Option1 False/Niet geÃ¯nstalleerd: ""
+*nl.Option1 True/GeÃ¯nstalleerd: ""
+*nl.Translation Option2/Bulklade: ""
+*nl.Option2 False/Niet geÃ¯nstalleerd: ""
+*nl.Option2 True/GeÃ¯nstalleerd: ""
+*nl.Translation Option30/Finisher SR3040: ""
+*nl.Option30 False/Niet geÃ¯nstalleerd: ""
+*nl.Option30 True/GeÃ¯nstalleerd: ""
+*nl.Translation General/General: ""
+*nl.Translation RIPaperPolicy/Aanpassen aan papier: ""
+*nl.RIPaperPolicy PromptUser/Gebruiker vragen: ""
+*nl.RIPaperPolicy NearestSizeAdjust/Dichtstbijzijnde formaat en schalen: ""
+*nl.RIPaperPolicy NearestSizeNoAdjust/Dichtstbijzijnde formaat en bijsnijden: ""
+*nl.Translation PageSize/Media Size: ""
+*nl.PageSize A3/A3: ""
+*nl.PageSize A4/A4: ""
+*nl.PageSize A5/A5: ""
+*nl.PageSize A6/A6: ""
+*nl.PageSize B4/B4 (JIS): ""
+*nl.PageSize B5/B5 (JIS): ""
+*nl.PageSize Legal/Legal: ""
+*nl.PageSize Letter/Letter: ""
+*nl.PageSize HalfLetter/5,5x8,5: ""
+*nl.PageSize 11x17/11x17: ""
+*nl.PageSize Executive/Executive: ""
+*nl.PageSize F/8x13: ""
+*nl.PageSize Folio/8,25x13: ""
+*nl.PageSize FanFoldGermanLegal/8,5x13: ""
+*nl.PageSize A3.FullBleed/A3 (Aflopend): ""
+*nl.PageSize A4.FullBleed/A4 (Aflopend): ""
+*nl.PageSize A5.FullBleed/A5 (Aflopend): ""
+*nl.PageSize A6.FullBleed/A6 (Aflopend): ""
+*nl.PageSize B4.FullBleed/B4 JIS (Aflopend): ""
+*nl.PageSize B5.FullBleed/B5 JIS (Aflopend): ""
+*nl.PageSize Legal.FullBleed/Legal (Aflopend): ""
+*nl.PageSize Letter.FullBleed/Letter (Aflopend): ""
+*nl.PageSize HalfLetter.FullBleed/5,5x8,5 (Aflopend): ""
+*nl.PageSize 11x17.FullBleed/11x17 (Aflopend): ""
+*nl.PageSize Executive.FullBleed/Executive (Aflopend): ""
+*nl.PageSize F.FullBleed/8x13 (Aflopend): ""
+*nl.PageSize Folio.FullBleed/8,25x13 (Aflopend): ""
+*nl.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (Aflopend): ""
+*nl.PageSize Custom/Custom: ""
+*nl.Translation PageRegion/PageRegion: ""
+*nl.PageRegion A3/A3: ""
+*nl.PageRegion A4/A4: ""
+*nl.PageRegion A5/A5: ""
+*nl.PageRegion A6/A6: ""
+*nl.PageRegion B4/B4 (JIS): ""
+*nl.PageRegion B5/B5 (JIS): ""
+*nl.PageRegion Legal/Legal: ""
+*nl.PageRegion Letter/Letter: ""
+*nl.PageRegion HalfLetter/5,5x8,5: ""
+*nl.PageRegion 11x17/11x17: ""
+*nl.PageRegion Executive/Executive: ""
+*nl.PageRegion F/8x13: ""
+*nl.PageRegion Folio/8,25x13: ""
+*nl.PageRegion FanFoldGermanLegal/8,5x13: ""
+*nl.PageRegion A3.FullBleed/A3 (Aflopend): ""
+*nl.PageRegion A4.FullBleed/A4 (Aflopend): ""
+*nl.PageRegion A5.FullBleed/A5 (Aflopend): ""
+*nl.PageRegion A6.FullBleed/A6 (Aflopend): ""
+*nl.PageRegion B4.FullBleed/B4 JIS (Aflopend): ""
+*nl.PageRegion B5.FullBleed/B5 JIS (Aflopend): ""
+*nl.PageRegion Legal.FullBleed/Legal (Aflopend): ""
+*nl.PageRegion Letter.FullBleed/Letter (Aflopend): ""
+*nl.PageRegion HalfLetter.FullBleed/5,5x8,5 (Aflopend): ""
+*nl.PageRegion 11x17.FullBleed/11x17 (Aflopend): ""
+*nl.PageRegion Executive.FullBleed/Executive (Aflopend): ""
+*nl.PageRegion F.FullBleed/8x13 (Aflopend): ""
+*nl.PageRegion Folio.FullBleed/8,25x13 (Aflopend): ""
+*nl.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (Aflopend): ""
+*nl.Translation InputSlot/Media Source: ""
+*nl.InputSlot MultiTray/Handinvoer: ""
+*nl.InputSlot 1Tray/Lade 1: ""
+*nl.InputSlot 2Tray/Lade 2: ""
+*nl.InputSlot 3Tray/Lade 3: ""
+*nl.InputSlot 4Tray/Lade 4: ""
+*nl.InputSlot 5Tray/Bulklade: ""
+*nl.Translation Duplex/Duplex: ""
+*nl.Duplex None/Uit: ""
+*nl.Duplex DuplexNoTumble/Lange kant: ""
+*nl.Duplex DuplexTumble/Korte kant: ""
+*nl.Translation RICollate/Sorteren: ""
+*nl.RICollate False/Uit: ""
+*nl.RICollate True/Aan: ""
+*nl.Translation RIPrintMode/Afdrukmodus: ""
+*nl.RIPrintMode 0rhit/Via: ""
+*nl.RIPrintMode 1rhit/Randen bijwerken: ""
+*nl.RIPrintMode 5rhit/Tonerbesparen 1: ""
+*nl.RIPrintMode 4rhit/Tonerbesparen 2: ""
+*nl.Translation RPSDitherType/Dithering: ""
+*nl.RPSDitherType Auto/Automatisch: ""
+*nl.RPSDitherType Photo/Fotografisch: ""
+*nl.RPSDitherType Letter/Tekst: ""
+*nl.RPSDitherType User/Gebruikersinstelling: ""
+*nl.Translation Rimagesm/Gladstrijken afbeelding: ""
+*nl.Rimagesm Off/Uit: ""
+*nl.Rimagesm On/Aan: ""
+*nl.Rimagesm Auto/Automatisch: ""
+*nl.Rimagesm 90ppi/Minder dan 90 ppi: ""
+*nl.Rimagesm 150ppi/Minder dan 150 ppi: ""
+*nl.Rimagesm 200ppi/Minder dan 200 ppi: ""
+*nl.Rimagesm 300ppi/Minder dan 300 ppi: ""
+*nl.Translation MediaType/Papiersoort: ""
+*nl.MediaType Auto/Normaal/Gerecycled: ""
+*nl.MediaType Plain/Normaal: ""
+*nl.MediaType Recycled/Gerecycled: ""
+*nl.MediaType Special/Speciaal: ""
+*nl.MediaType Colored/Kleur: ""
+*nl.MediaType Letterhead/Briefhoofd: ""
+*nl.MediaType Preprinted/Voorgedrukt: ""
+*nl.MediaType Prepunched/Voorgeperforeerd: ""
+*nl.MediaType Labels/Etiketten: ""
+*nl.MediaType Bond/Bankpost: ""
+*nl.MediaType Cardstock/Karton: ""
+*nl.MediaType OHP/Transparant: ""
+*nl.MediaType Thick/Dik: ""
+*nl.MediaType None/Geen: ""
+*nl.Translation OutputBin/Bestemming: ""
+*nl.OutputBin Default/Printerstandaard: ""
+*nl.OutputBin Standard/Standaard uitvoer: ""
+*nl.OutputBin FinProof/Finisher SR3040 bovenuitvoer: ""
+*nl.OutputBin FinShift/Finisher SR3040 staffeluitvoer: ""
+*nl.Translation StapleLocation/Nieten: ""
+*nl.StapleLocation None/Uit: ""
+*nl.StapleLocation UpperLeft/Linksboven: ""
+*nl.StapleLocation UpperRight/Rechtsboven: ""
+*nl.StapleLocation LowerLeft/Linksonder: ""
+*nl.StapleLocation LowerRight/Rechtsonder: ""
+*nl.StapleLocation LeftW/2 aan linkerkant: ""
+*nl.StapleLocation RightW/2 aan rechterkant: ""
+*nl.StapleLocation UpperW/2 aan bovenkant: ""
+*nl.StapleLocation LowerW/2 onderaan: ""
+*nl.Translation RIPunch/Perforeren: ""
+*nl.RIPunch None/Uit: ""
+*nl.RIPunch Left2/2 aan linkerkant: ""
+*nl.RIPunch Left3/3 aan linkerkant: ""
+*nl.RIPunch Left4/4 aan linkerkant: ""
+*nl.RIPunch Right2/2 aan rechterkant: ""
+*nl.RIPunch Right3/3 aan rechterkant: ""
+*nl.RIPunch Right4/4 aan rechterkant: ""
+*nl.RIPunch Upper2/2 aan bovenkant: ""
+*nl.RIPunch Upper3/3 aan bovenkant: ""
+*nl.RIPunch Upper4/4 aan bovenkant: ""
+*nl.RIPunch Lower2/2 onderaan: ""
+*nl.RIPunch Lower3/3 onderaan: ""
+*nl.RIPunch Lower4/4 onderaan: ""
+*nl.Translation RIOrientOvr/Gewijzigde richting: ""
+*nl.RIOrientOvr Off/Uit: ""
+*nl.RIOrientOvr Landscape/Liggend: ""
+*nl.RIOrientOvr Portrait/Staand: ""
+*% Norwegian localization
+*no.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*no.Translation InstallableOptions/Installerbart ekstrautstyr: ""
+*no.Translation Option1/Nedre papirmagasiner: ""
+*no.Option1 False/Ikke installert: ""
+*no.Option1 True/Installert: ""
+*no.Translation Option2/HÃ¸yvolumsmagasin (LCT): ""
+*no.Option2 False/Ikke installert: ""
+*no.Option2 True/Installert: ""
+*no.Translation Option30/Etterbehandler SR3040: ""
+*no.Option30 False/Ikke installert: ""
+*no.Option30 True/Installert: ""
+*no.Translation General/General: ""
+*no.Translation RIPaperPolicy/Tilpass til papir: ""
+*no.RIPaperPolicy PromptUser/Anrope bruker: ""
+*no.RIPaperPolicy NearestSizeAdjust/NÃ¦rmeste format og skalering: ""
+*no.RIPaperPolicy NearestSizeNoAdjust/NÃ¦rmeste format og beskjÃ¦ring: ""
+*no.Translation PageSize/Media Size: ""
+*no.PageSize A3/A3: ""
+*no.PageSize A4/A4: ""
+*no.PageSize A5/A5: ""
+*no.PageSize A6/A6: ""
+*no.PageSize B4/B4 (JIS): ""
+*no.PageSize B5/B5 (JIS): ""
+*no.PageSize Legal/Legal: ""
+*no.PageSize Letter/Letter: ""
+*no.PageSize HalfLetter/5,5x8,5: ""
+*no.PageSize 11x17/11x17: ""
+*no.PageSize Executive/Executive: ""
+*no.PageSize F/8x13: ""
+*no.PageSize Folio/8,25x13: ""
+*no.PageSize FanFoldGermanLegal/8,5x13: ""
+*no.PageSize A3.FullBleed/A3 (utfallende): ""
+*no.PageSize A4.FullBleed/A4 (utfallende): ""
+*no.PageSize A5.FullBleed/A5 (utfallende): ""
+*no.PageSize A6.FullBleed/A6 (utfallende): ""
+*no.PageSize B4.FullBleed/B4 JIS (utfallende): ""
+*no.PageSize B5.FullBleed/B5 JIS (utfallende): ""
+*no.PageSize Legal.FullBleed/Legal (utfallende): ""
+*no.PageSize Letter.FullBleed/Letter (utfallende): ""
+*no.PageSize HalfLetter.FullBleed/5,5x8,5 (utfallende): ""
+*no.PageSize 11x17.FullBleed/11x17 (utfallende): ""
+*no.PageSize Executive.FullBleed/Executive (utfallende): ""
+*no.PageSize F.FullBleed/8x13 (utfallende): ""
+*no.PageSize Folio.FullBleed/8,25x13 (utfallende): ""
+*no.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (utfallende): ""
+*no.PageSize Custom/Custom: ""
+*no.Translation PageRegion/PageRegion: ""
+*no.PageRegion A3/A3: ""
+*no.PageRegion A4/A4: ""
+*no.PageRegion A5/A5: ""
+*no.PageRegion A6/A6: ""
+*no.PageRegion B4/B4 (JIS): ""
+*no.PageRegion B5/B5 (JIS): ""
+*no.PageRegion Legal/Legal: ""
+*no.PageRegion Letter/Letter: ""
+*no.PageRegion HalfLetter/5,5x8,5: ""
+*no.PageRegion 11x17/11x17: ""
+*no.PageRegion Executive/Executive: ""
+*no.PageRegion F/8x13: ""
+*no.PageRegion Folio/8,25x13: ""
+*no.PageRegion FanFoldGermanLegal/8,5x13: ""
+*no.PageRegion A3.FullBleed/A3 (utfallende): ""
+*no.PageRegion A4.FullBleed/A4 (utfallende): ""
+*no.PageRegion A5.FullBleed/A5 (utfallende): ""
+*no.PageRegion A6.FullBleed/A6 (utfallende): ""
+*no.PageRegion B4.FullBleed/B4 JIS (utfallende): ""
+*no.PageRegion B5.FullBleed/B5 JIS (utfallende): ""
+*no.PageRegion Legal.FullBleed/Legal (utfallende): ""
+*no.PageRegion Letter.FullBleed/Letter (utfallende): ""
+*no.PageRegion HalfLetter.FullBleed/5,5x8,5 (utfallende): ""
+*no.PageRegion 11x17.FullBleed/11x17 (utfallende): ""
+*no.PageRegion Executive.FullBleed/Executive (utfallende): ""
+*no.PageRegion F.FullBleed/8x13 (utfallende): ""
+*no.PageRegion Folio.FullBleed/8,25x13 (utfallende): ""
+*no.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (utfallende): ""
+*no.Translation InputSlot/Media Source: ""
+*no.InputSlot MultiTray/Multiarkmater: ""
+*no.InputSlot 1Tray/Magasin 1: ""
+*no.InputSlot 2Tray/Magasin 2: ""
+*no.InputSlot 3Tray/Magasin 3: ""
+*no.InputSlot 4Tray/Magasin 4: ""
+*no.InputSlot 5Tray/HÃ¸yvolumsmagasin (LCT): ""
+*no.Translation Duplex/Tosidig: ""
+*no.Duplex None/Av: ""
+*no.Duplex DuplexNoTumble/Langside: ""
+*no.Duplex DuplexTumble/Kortside: ""
+*no.Translation RICollate/Sortering: ""
+*no.RICollate False/Av: ""
+*no.RICollate True/PÃ¥: ""
+*no.Translation RIPrintMode/Utskriftsmodus: ""
+*no.RIPrintMode 0rhit/Gjennom: ""
+*no.RIPrintMode 1rhit/Kantutjevning: ""
+*no.RIPrintMode 5rhit/Tonersparer 1: ""
+*no.RIPrintMode 4rhit/Tonersparer 2: ""
+*no.Translation RPSDitherType/Rastrering: ""
+*no.RPSDitherType Auto/Automatisk: ""
+*no.RPSDitherType Photo/Fotografisk: ""
+*no.RPSDitherType Letter/Tekst: ""
+*no.RPSDitherType User/Brukerinnstilling: ""
+*no.Translation Rimagesm/Bildeutjevning: ""
+*no.Rimagesm Off/Av: ""
+*no.Rimagesm On/PÃ¥: ""
+*no.Rimagesm Auto/Automatisk: ""
+*no.Rimagesm 90ppi/Mindre enn 90 ppi: ""
+*no.Rimagesm 150ppi/Mindre enn 150 ppi: ""
+*no.Rimagesm 200ppi/Mindre enn 200 ppi: ""
+*no.Rimagesm 300ppi/Mindre enn 300 ppi: ""
+*no.Translation MediaType/Papirtype: ""
+*no.MediaType Auto/Vanlig/resirkulert: ""
+*no.MediaType Plain/Vanlig: ""
+*no.MediaType Recycled/Resirkulert: ""
+*no.MediaType Special/Spesielt: ""
+*no.MediaType Colored/Farge: ""
+*no.MediaType Letterhead/Brevhode: ""
+*no.MediaType Preprinted/Fortrykt: ""
+*no.MediaType Prepunched/ForhÃ¥ndshullet: ""
+*no.MediaType Labels/Etiketter: ""
+*no.MediaType Bond/Skrivepapir: ""
+*no.MediaType Cardstock/Indekskort: ""
+*no.MediaType OHP/Transparent: ""
+*no.MediaType Thick/Tykt: ""
+*no.MediaType None/Ingen: ""
+*no.Translation OutputBin/Destinasjon: ""
+*no.OutputBin Default/Skriverstandard: ""
+*no.OutputBin Standard/Standard brett: ""
+*no.OutputBin FinProof/Etterbehandler SR3040 Ã¸vre brett: ""
+*no.OutputBin FinShift/Etterbehandler SR3040 sideforskyverbrett: ""
+*no.Translation StapleLocation/Stifting: ""
+*no.StapleLocation None/Av: ""
+*no.StapleLocation UpperLeft/Ã˜verst venstre: ""
+*no.StapleLocation UpperRight/Ã˜verst hÃ¸yre: ""
+*no.StapleLocation LowerLeft/Nederst venstre: ""
+*no.StapleLocation LowerRight/Nederst hÃ¸yre: ""
+*no.StapleLocation LeftW/2 venstre: ""
+*no.StapleLocation RightW/2 hÃ¸yre: ""
+*no.StapleLocation UpperW/2 Ã¸verst: ""
+*no.StapleLocation LowerW/2 nederst: ""
+*no.Translation RIPunch/Hulling: ""
+*no.RIPunch None/Av: ""
+*no.RIPunch Left2/2 venstre: ""
+*no.RIPunch Left3/3 venstre: ""
+*no.RIPunch Left4/4 venstre: ""
+*no.RIPunch Right2/2 hÃ¸yre: ""
+*no.RIPunch Right3/3 hÃ¸yre: ""
+*no.RIPunch Right4/4 hÃ¸yre: ""
+*no.RIPunch Upper2/2 Ã¸verst: ""
+*no.RIPunch Upper3/3 Ã¸verst: ""
+*no.RIPunch Upper4/4 Ã¸verst: ""
+*no.RIPunch Lower2/2 nederst: ""
+*no.RIPunch Lower3/3 nederst: ""
+*no.RIPunch Lower4/4 nederst: ""
+*no.Translation RIOrientOvr/Overstyring av retning: ""
+*no.RIOrientOvr Off/Av: ""
+*no.RIOrientOvr Landscape/Liggende: ""
+*no.RIOrientOvr Portrait/StÃ¥ende: ""
+*% Swedish localization
+*sv.Translation ModelName/RICOH Aficio SP 8100DN: ""
+*sv.Translation InstallableOptions/Installerbara tillval: ""
+*sv.Translation Option1/Nedre papperskassetter: ""
+*sv.Option1 False/Ej installerat: ""
+*sv.Option1 True/Installerat: ""
+*sv.Translation Option2/Stormagasin: ""
+*sv.Option2 False/Ej installerat: ""
+*sv.Option2 True/Installerat: ""
+*sv.Translation Option30/Efterbehandlare SR3040: ""
+*sv.Option30 False/Ej installerat: ""
+*sv.Option30 True/Installerat: ""
+*sv.Translation General/General: ""
+*sv.Translation RIPaperPolicy/Anpassa till papper: ""
+*sv.RIPaperPolicy PromptUser/Varnar anvÃ¤ndaren: ""
+*sv.RIPaperPolicy NearestSizeAdjust/NÃ¤rmaste format och skala: ""
+*sv.RIPaperPolicy NearestSizeNoAdjust/NÃ¤rmaste format och skÃ¤rning: ""
+*sv.Translation PageSize/Media Size: ""
+*sv.PageSize A3/A3: ""
+*sv.PageSize A4/A4: ""
+*sv.PageSize A5/A5: ""
+*sv.PageSize A6/A6: ""
+*sv.PageSize B4/B4 (JIS): ""
+*sv.PageSize B5/B5 (JIS): ""
+*sv.PageSize Legal/Legal: ""
+*sv.PageSize Letter/Letter: ""
+*sv.PageSize HalfLetter/5,5x8,5: ""
+*sv.PageSize 11x17/11x17: ""
+*sv.PageSize Executive/Executive: ""
+*sv.PageSize F/8x13: ""
+*sv.PageSize Folio/8,25x13: ""
+*sv.PageSize FanFoldGermanLegal/8,5x13: ""
+*sv.PageSize A3.FullBleed/A3 (Kant till kant): ""
+*sv.PageSize A4.FullBleed/A4 (Kant till kant): ""
+*sv.PageSize A5.FullBleed/A5 (Kant till kant): ""
+*sv.PageSize A6.FullBleed/A6 (Kant till kant): ""
+*sv.PageSize B4.FullBleed/B4 JIS (Kant till kant): ""
+*sv.PageSize B5.FullBleed/B5 JIS (Kant till kant): ""
+*sv.PageSize Legal.FullBleed/Legal (Kant till kant): ""
+*sv.PageSize Letter.FullBleed/Letter (Kant till kant): ""
+*sv.PageSize HalfLetter.FullBleed/5,5x8,5 (Kant till kant): ""
+*sv.PageSize 11x17.FullBleed/11x17 (Kant till kant): ""
+*sv.PageSize Executive.FullBleed/Executive (Kant till kant): ""
+*sv.PageSize F.FullBleed/8x13 (Kant till kant): ""
+*sv.PageSize Folio.FullBleed/8,25x13 (Kant till kant): ""
+*sv.PageSize FanFoldGermanLegal.FullBleed/8,5x13 (Kant till kant): ""
+*sv.PageSize Custom/Custom: ""
+*sv.Translation PageRegion/PageRegion: ""
+*sv.PageRegion A3/A3: ""
+*sv.PageRegion A4/A4: ""
+*sv.PageRegion A5/A5: ""
+*sv.PageRegion A6/A6: ""
+*sv.PageRegion B4/B4 (JIS): ""
+*sv.PageRegion B5/B5 (JIS): ""
+*sv.PageRegion Legal/Legal: ""
+*sv.PageRegion Letter/Letter: ""
+*sv.PageRegion HalfLetter/5,5x8,5: ""
+*sv.PageRegion 11x17/11x17: ""
+*sv.PageRegion Executive/Executive: ""
+*sv.PageRegion F/8x13: ""
+*sv.PageRegion Folio/8,25x13: ""
+*sv.PageRegion FanFoldGermanLegal/8,5x13: ""
+*sv.PageRegion A3.FullBleed/A3 (Kant till kant): ""
+*sv.PageRegion A4.FullBleed/A4 (Kant till kant): ""
+*sv.PageRegion A5.FullBleed/A5 (Kant till kant): ""
+*sv.PageRegion A6.FullBleed/A6 (Kant till kant): ""
+*sv.PageRegion B4.FullBleed/B4 JIS (Kant till kant): ""
+*sv.PageRegion B5.FullBleed/B5 JIS (Kant till kant): ""
+*sv.PageRegion Legal.FullBleed/Legal (Kant till kant): ""
+*sv.PageRegion Letter.FullBleed/Letter (Kant till kant): ""
+*sv.PageRegion HalfLetter.FullBleed/5,5x8,5 (Kant till kant): ""
+*sv.PageRegion 11x17.FullBleed/11x17 (Kant till kant): ""
+*sv.PageRegion Executive.FullBleed/Executive (Kant till kant): ""
+*sv.PageRegion F.FullBleed/8x13 (Kant till kant): ""
+*sv.PageRegion Folio.FullBleed/8,25x13 (Kant till kant): ""
+*sv.PageRegion FanFoldGermanLegal.FullBleed/8,5x13 (Kant till kant): ""
+*sv.Translation InputSlot/Media Source: ""
+*sv.InputSlot MultiTray/Sidoinmatningsfack: ""
+*sv.InputSlot 1Tray/Kassett 1: ""
+*sv.InputSlot 2Tray/Kassett 2: ""
+*sv.InputSlot 3Tray/Kassett 3: ""
+*sv.InputSlot 4Tray/Kassett 4: ""
+*sv.InputSlot 5Tray/Stormagasin: ""
+*sv.Translation Duplex/Duplex: ""
+*sv.Duplex None/Av: ""
+*sv.Duplex DuplexNoTumble/LÃ¥ngsida: ""
+*sv.Duplex DuplexTumble/Kortsida: ""
+*sv.Translation RICollate/Sortera: ""
+*sv.RICollate False/Av: ""
+*sv.RICollate True/PÃ¥: ""
+*sv.Translation RIPrintMode/UtskriftslÃ¤ge: ""
+*sv.RIPrintMode 0rhit/Genom: ""
+*sv.RIPrintMode 1rhit/KantutjÃ¤mning: ""
+*sv.RIPrintMode 5rhit/Tonerbesparing 1: ""
+*sv.RIPrintMode 4rhit/Tonerbesparing 2: ""
+*sv.Translation RPSDitherType/Rastrering: ""
+*sv.RPSDitherType Auto/Automatisk: ""
+*sv.RPSDitherType Photo/Foto: ""
+*sv.RPSDitherType Letter/Text: ""
+*sv.RPSDitherType User/AnvÃ¤ndarinstÃ¤llning: ""
+*sv.Translation Rimagesm/BildutjÃ¤mning: ""
+*sv.Rimagesm Off/Av: ""
+*sv.Rimagesm On/PÃ¥: ""
+*sv.Rimagesm Auto/Automatisk: ""
+*sv.Rimagesm 90ppi/Mindre Ã¤n 90 ppi: ""
+*sv.Rimagesm 150ppi/Mindre Ã¤n 150 ppi: ""
+*sv.Rimagesm 200ppi/Mindre Ã¤n 200 ppi: ""
+*sv.Rimagesm 300ppi/Mindre Ã¤n 300 ppi: ""
+*sv.Translation MediaType/Papperstyp: ""
+*sv.MediaType Auto/Normal/Ã…tervunnet: ""
+*sv.MediaType Plain/Normal: ""
+*sv.MediaType Recycled/Ã…tervunnet: ""
+*sv.MediaType Special/Special: ""
+*sv.MediaType Colored/FÃ¤rgat: ""
+*sv.MediaType Letterhead/Brevhuvud: ""
+*sv.MediaType Preprinted/FÃ¶rtryckt: ""
+*sv.MediaType Prepunched/HÃ¥lat: ""
+*sv.MediaType Labels/Etiketter: ""
+*sv.MediaType Bond/Fint: ""
+*sv.MediaType Cardstock/Vykort: ""
+*sv.MediaType OHP/OH-film: ""
+*sv.MediaType Thick/Tjockt: ""
+*sv.MediaType None/Inget: ""
+*sv.Translation OutputBin/Mottagare: ""
+*sv.OutputBin Default/Skrivarstandard: ""
+*sv.OutputBin Standard/Standard utmatningsfack: ""
+*sv.OutputBin FinProof/Efterbehandlare SR3040 Ã¶vre utmatningsfack: ""
+*sv.OutputBin FinShift/Efterbehandlare SR3040 vÃ¤xelfack: ""
+*sv.Translation StapleLocation/HÃ¤ftning: ""
+*sv.StapleLocation None/Av: ""
+*sv.StapleLocation UpperLeft/Ã–vre vÃ¤nster: ""
+*sv.StapleLocation UpperRight/Ã–vre hÃ¶ger: ""
+*sv.StapleLocation LowerLeft/Nedre vÃ¤nster: ""
+*sv.StapleLocation LowerRight/Nedre hÃ¶ger: ""
+*sv.StapleLocation LeftW/2 i vÃ¤nster: ""
+*sv.StapleLocation RightW/2 i hÃ¶ger: ""
+*sv.StapleLocation UpperW/2 i Ã¶vre: ""
+*sv.StapleLocation LowerW/2 i nedre: ""
+*sv.Translation RIPunch/HÃ¥lslagning: ""
+*sv.RIPunch None/Av: ""
+*sv.RIPunch Left2/2 i vÃ¤nster: ""
+*sv.RIPunch Left3/3 i vÃ¤nster: ""
+*sv.RIPunch Left4/4 i vÃ¤nster: ""
+*sv.RIPunch Right2/2 i hÃ¶ger: ""
+*sv.RIPunch Right3/3 i hÃ¶ger: ""
+*sv.RIPunch Right4/4 i hÃ¶ger: ""
+*sv.RIPunch Upper2/2 i Ã¶vre: ""
+*sv.RIPunch Upper3/3 i Ã¶vre: ""
+*sv.RIPunch Upper4/4 i Ã¶vre: ""
+*sv.RIPunch Lower2/2 i nedre: ""
+*sv.RIPunch Lower3/3 i nedre: ""
+*sv.RIPunch Lower4/4 i nedre: ""
+*sv.Translation RIOrientOvr/Ã„ndra utskriftsriktning: ""
+*sv.RIOrientOvr Off/Av: ""
+*sv.RIOrientOvr Landscape/Liggande: ""
+*sv.RIOrientOvr Portrait/StÃ¥ende: ""
+*cupsLanguages: "da de es fr it nl no sv"
