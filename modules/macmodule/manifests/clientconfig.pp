@@ -40,4 +40,10 @@ class macmodule::clientconfig{
 	exec {'display sysinfo at login screen':
 	  command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName",
 	  }
+	
+	#displays msg at login window
+        exec {'display msg at login screen':
+          command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText 'Property of Harbor Freight Tools'",
+          }
+
 }
