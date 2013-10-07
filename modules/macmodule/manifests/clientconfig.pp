@@ -35,5 +35,9 @@ class macmodule::clientconfig{
 	exec {'turns on puppetd n launchd':
 	  command => "/bin/launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist",
 	  }
-		
+
+	#displays system info, ip, computername  at login by clicking time in upper-right corner
+	exec {'display sysinfo at login screen':
+	  command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName",
+	  }
 }

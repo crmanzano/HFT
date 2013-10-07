@@ -1,7 +1,6 @@
 # Public: Install updates from Apple
 class macmodule::software_update {
-  exec {
-    'OSX Software Update':
+  exec { 'OSX Software Update':
       command  => '/usr/sbin/softwareupdate -i -a',
       schedule => 'update_schedule',
       timeout  => 0,
@@ -9,6 +8,8 @@ class macmodule::software_update {
   }
 
   schedule { 'update_schedule':
-    period => 'weekly'
+    weekday => 'Friday',
+    range =>  '14:00-18:00',
+    #repeat => 3
   }
 }
