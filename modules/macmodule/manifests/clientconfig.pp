@@ -46,4 +46,19 @@ class macmodule::clientconfig{
           command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText 'Property of Harbor Freight Tools'",
           }
 
+	#hides madmin from login window
+        exec {'hides madmin from login window':
+          command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add madmin",
+          }
+	
+	#hides puppet from login window
+        exec {'hides puppet from login window':
+          command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add puppet",
+          }
+	
+	#hides jorge from login window
+        exec {'hides jorge from login window':
+          command => "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add jorge",
+          }
+
 }
