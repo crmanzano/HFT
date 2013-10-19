@@ -1,6 +1,5 @@
 # Puppet modules to run on the client.
-node "default" { 
+case $operatingsystem   { 
 
-		include macmodule
-
+	'Darwin':	{ include macmodule} # apply the macmodule class
 }
